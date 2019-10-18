@@ -37,9 +37,10 @@ Que garder pour plus tard ?
 
 ## Dans la suite de ce cours, plusieurs séances seront consacrées à:
 
-### la gestion des utilisateurs,
-### la gestion des paniers,
-### la sécurisation de votre site Web
+### La gestion des utilisateurs
+
+### La gestion des paniers
+### La sécurisation de votre site Web
 ### En conséquence, ne pas attaquer ces parties pour le moment.
 
 Où héberger ce site? Comment partager un répertoire ?
@@ -48,9 +49,13 @@ Le site à rendre sera à héberger dans le répertoire de l’un des membres de
 ## L’étudiant 1 doit donc créer le répertoire eCommerce dans son dossier public_html puis donner les droits aux autres étudiants de son groupe sur ce répertoire:
 
 setfacl -m u:loginetudiant2:x /home/ann2/loginetudiant1 (droit de lister le repertoire personnel)
+
 setfacl -m u:loginetudiant2:x /home/ann2/loginetudiant1/public_html (droit de lister le repertoire public_html)
+
 setfacl -R -m u:loginetudiant2:rwx eCommerce (donne récursivement les droits à tout les fichiers inclus dans eCommerce)
+
 setfacl -R -m d:u:loginetudiant2:rwx eCommerce (défini des droits par défaut : les nouveaux fichiers créés prendront ces droits)
+
 Rappel du TD 1 : Les ACL permettent d’avoir des droits spécifiques à plusieurs utilisateurs et à plusieurs groupes quand les droits classiques sont limités à un utilisateur et un groupe. Pour lire les droits ACL d’un fichier ou dossier, on tape getfacl nom_du_fichier.
 
 Référence : La page Côté Technique > Site Web > Partager public_html de intradepinfo
