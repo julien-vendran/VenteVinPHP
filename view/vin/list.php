@@ -4,7 +4,7 @@
         $immat2 = $immat;
         echo ""
         . "<p>"
-        . "Voiture d'immatriculation "
+        . "Vin d'immatriculation "
         . "<a href = \"?action=read&immat=" . rawurlencode($immat) . "\">"
         . htmlspecialchars($immat)
         . "</a>"
@@ -18,5 +18,5 @@
         . "</a>"
         . "</p>";
     }
-    echo "<a id=\"create\" href = \"?action=create\">Créer une autre voiture</a>";
+    echo "<a id=\"create\" href = \"?action=create\">Créer une autre Vin</a>";
 ?>

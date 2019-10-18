@@ -5,7 +5,7 @@
     $marque = $v->getMarque();
     $couleur = $v->getCouleur();
 
-    echo("Voiture " . htmlspecialchars($immatriculation)
+    echo("Vin " . htmlspecialchars($immatriculation)
     . " de marque " . htmlspecialchars($marque)
     . " (couleur " . htmlspecialchars($couleur)
     . "). <br>"

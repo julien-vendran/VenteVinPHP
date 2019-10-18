@@ -1,71 +1,63 @@
 <?php
-
+require_once '../lib/File.php';
 $path_array = array('model','Model.php');
 $path = File::build_path($path_array);
 require_once ($path);
 
-class ModelVoiture {
+class ModelVin {
 
-    private $marque;
-    private $couleur;
-    private $immatriculation;
+    private $idVin; // Clé primaire 
+    private $nomVin;
+    private $anneeVin;
+    private $descriptionVin;
+    private $typeVin;
+    private $medailleVin;
+    private $prixVin;
+    private $idDomaine; //Clé étrangère
 
     //Méthode Statique
-    static public function getAllVoitures() {
-        $rep = Model::$pdo->query("SELECT * FROM voiture");
-        $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelVoiture');
+    static public function getAllvins() {
+        $rep = Model::$pdo->query("SELECT * FROM vin_vin");
+        $rep->setFetchMode(PDO::FETCH_CLASS, 'Modelvin');
         return $rep->fetchAll();
     }
 
-    static public function getVoitureByImmat($immat) {
-        $sql = "SELECT * from voiture WHERE immatriculation=:imat_sql";
+    static public function getvinById($id) {
+        $sql = "SELECT * from vin_vin WHERE idVin=:id_sql";
         $req_prep = Model::$pdo->prepare($sql);
         $values = array(
-            "imat_sql" => $immat,
+            "id_sql" => $id,
         ); 
         $req_prep->execute($values);
         
-        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelVoiture');
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelVin');
         $tab_voit = $req_prep->fetchAll();
         if (empty($tab_voit))
             return false;
         return $tab_voit[0];
     }
 
-    public function getMarque() {
-        return $this->marque;
+    public function get($attribut) {
+        return $this->$attribut;
     }
 
-    public function getCouleur() {
-        return $this->couleur;
-    }
-
-    public function getImmatriculation() {
-        return $this->immatriculation;
-    }
-
-    public function setMarque($marque2) {
-        $this->marque = $marque2;
-    }
-
-    public function setCouleur($couleur2) {
-        $this->couleur = $couleur2;
-    }
-
-    public function setImmatriculation($immatriculation2) {
-        if (strlen(immatriculation2) == 8) {
-            $this->immatriculation = $immatriculation2;
-        }
+    public function set($attribut, $valeur) {
+        $this->$attribut = $valeur;
     }
 
     public function save() {
         try {
-            $sql = "INSERT INTO voiture (immatriculation, marque, couleur) VALUES (:sql_imat, :sql_marque, :sql_couleur)";
+            $sql = "INSERT INTO vin_vin (idVin, nomVin, idDomaine, anneeVin, descriptionVin, typeVin, medailleVin, prixVin) VALUES (:sql_idVin, :sql_nomVin, :sql_idDomaine, :sql_anneeVin, :sql_descriptionVin, :sql_typeVin, :sql_medailleVin, :sql_prixVin)";
             $req_prep = MODEL::$pdo->prepare($sql);
             $values = array(
-                "sql_imat" => $this->immatriculation,
-                "sql_marque" => $this->marque,
-                "sql_couleur" => $this->couleur
+                "sql_idVin" => $this->idVin, 
+                "sql_nomVin" => $this->nomVin, 
+                "sql_idDomaine" => $this->idDomaine, 
+                "sql_anneeVin" => $this->anneeVin, 
+                "sql_descriptionVin" => $this->descriptionVin, 
+                "sql_typeVin" => $this->typeVin, 
+                "sql_medailleVin" => $this->medailleVin, 
+                "sql_prixVin" => $this->prixVin
             );
             $req_prep->execute($values);
             return true;
@@ -76,10 +68,10 @@ class ModelVoiture {
     
     public function delete() {
         try{
-            $sql = "DELETE FROM voiture WHERE immatriculation=:sql_imat";
+            $sql = "DELETE FROM vin_vin WHERE idVin=:sql_idVin";
             $req_prep = MODEL::$pdo->prepare($sql);
             $values = array(
-                "sql_imat" => $this->immatriculation
+                "sql_idVin" => $this->idVin
             );
             $req_prep->execute($values);
             return true;
@@ -90,12 +82,18 @@ class ModelVoiture {
     
     public static function update($data){
         try{
-            $sql = "UPDATE voiture SET marque=:sql_marque, couleur=:sql_couleur WHERE immatriculation=:sql_immat";
+            // $sql = "UPDATE vin_vin SET marque=:sql_marque, couleur=:sql_couleur WHERE immatriculation=:sql_immat";
+            $sql = "UPDATE vin_vin SET nomVin = :sql_nomVin, idDomaine = :sql_idDomaine, anneeVin = :sql_anneeVin, descriptionVin = :sql_descriptionVin, typeVin = :sql_typeVin, medailleVin = :sql_medailleVin, prixVin = :sql_prixVin WHERE idVin=:sql_idVin";
             $req_prep = MODEL::$pdo->prepare($sql);
             $values = array(
-                "sql_immat" => $data[0],
-                "sql_marque" => $data[1],
-                "sql_couleur" => $data[2]
+                "sql_idVin" => $data['idVin'], 
+                "sql_nomVin" => $data['nomVin'], 
+                "sql_idDomaine" => $data['idDomaine'], 
+                "sql_anneeVin" => $data['anneeVin'], 
+                "sql_descriptionVin" => $data['descriptionVin'], 
+                "sql_typeVin" => $data['typeVin'], 
+                "sql_medailleVin" => $data['medailleVin'], 
+                "sql_prixVin" => $data['prixVin']
             );
             $req_prep->execute($values);
             return true;
@@ -105,17 +103,20 @@ class ModelVoiture {
     }
 
     // un constructeur
-    public function __construct($m = NULL, $c = NULL, $i = NULL) {
-        if (!is_null($m) && !is_null($c) && !is_null($i)) {
-            $this->marque = $m;
-            $this->couleur = $c;
-            $this->immatriculation = $i;
-        }
+    public function __construct($data) {
+       $this->idVin = $data['idVin'],
+       $this->nomVin = $data['nomVin'],
+       $this->idDomaine = $data['idDomaine'],
+       $this->anneeVin = $data['anneeVin'],
+       $this->descriptionVin = $data['descriptionVin'],
+       $this->typeVin = $data['typeVin'],
+       $this->medailleVin = $data['medailleVin'],
+       $this->prixVin = $data['prixVin']
     }
 
     // une methode d'affichage.
     /*public function afficher() {
-        echo("Voiture $this->immatriculation de marque $this->marque (couleur $this->couleur). <br>");
+        echo("vin $this->immatriculation de marque $this->marque (couleur $this->couleur). <br>");
     }*/
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-    echo("La voiture " . htmlspecialchars($immat) .
+    echo("La Vin " . htmlspecialchars($immat) .
      " a bien été supprimée. <br>");
-    require File::build_path(array('view','voiture','list.php'));
+    require File::build_path(array('view','Vin','list.php'));
 ?>

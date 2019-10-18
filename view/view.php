@@ -8,15 +8,15 @@
     <body>
         <header>
             <nav>
-                <?php echo '<a href="index.php?action=readAll">Voitures</a>' ?>
+                <?php echo '<a href="index.php?action=readAll">Vins</a>' ?>
                 <?php echo '<a href="index.php?action=readAll&controller=utilisateur">Utilisateurs</a>' ?>
                 <?php echo '<a href="index.php?action=readAll&controller=trajet">Trajets</a>' ?>
             </nav>
         </header>
         <div>
             <?php
-            // Si $controleur='voiture' et $view='list',
-            // alors $filepath="/chemin_du_site/view/voiture/list.php"
+            // Si $controleur='Vin' et $view='list',
+            // alors $filepath="/chemin_du_site/view/Vin/list.php"
             $filepath = File::build_path(array("view", $controller, "$view.php"));
             require $filepath;
             ?>
