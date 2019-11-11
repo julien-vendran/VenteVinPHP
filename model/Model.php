@@ -1,32 +1,119 @@
 <?php
+require_once (File::build_path(array('config','Conf.php')));
 
-$path_array = array('config','Conf.php');
-$path = File::build_path($path_array);
-require_once ($path);
-
-class Model {
-
+class Model{
     public static $pdo;
 
-    public static function Init() {
+    public static function Init(){
         $hostname = Conf::getHostname();
         $database_name = Conf::getDatabase();
         $login = Conf::getLogin();
         $password = Conf::getPassword();
-        try {
-            self::$pdo = new PDO("mysql:host=$hostname;dbname=$database_name", $login, $password, 
-                    array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+        try{
+            self::$pdo = new PDO("mysql:host=$hostname;dbname=$database_name",$login,$password,
+                array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
             self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch(PDOException $e) { /*On lance une alerte à l'utilisateur*/
+            echo "<script type = 'text/javascript'>" .
+                "alert('Une erreur est servenue ! Veuillez reconfigurer votre base de donnée');" .
+                "</script>";
+            echo 'Une erreur est survenue, essayez de reconfigurer la base de donnée';
+        }
+    }
+    public static function selectAll(){
+        try {
+            $pdo = self::$pdo;
+            $nomTable = static::$object;
+            $nomClasse = 'Model' . ucfirst($nomTable);
+
+            $sql = "SELECT * from $nomTable";
+            $requete = $pdo->query($sql);
+            $requete->setFetchMode(PDO::FETCH_CLASS, $nomClasse);
+            return $requete->fetchAll();
         } catch (PDOException $e) {
-            if(Conf::getDebug()){
-                echo $e->getMessage();
-            } else {
-                echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
-            }
-            die();
+            return false;
+        }
+    }
+    public static function select($primary_value){
+        try {
+            $pdo = self::$pdo;
+            $nomTable = static::$object;
+            $nomClasse = 'Model' . ucfirst($nomTable);
+            $clePrimaire = static::$primary;
+
+            $sql = "SELECT * FROM $nomTable WHERE $clePrimaire=:sql_pk";
+            $requete = $pdo->prepare($sql);
+            $valeur = array(
+                "sql_pk" => $primary_value);
+
+            $requete->execute($valeur);
+            $requete->setFetchMode(PDO::FETCH_CLASS, $nomClasse);
+            $objet = $requete->fetchAll();
+            if (isset($objet[0]))
+                return $objet[0];
+            else
+                return null;
+
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+    public static function insert($data){
+        try {
+            $pdo = self::$pdo;
+            $nomTable = static::$object;
+            foreach ($data as $attribut => $tuple){
+                $tabColonne[] = "{$attribut}";
+                $tabValeur[] = "'{$tuple}'";}
+
+            $sql = "INSERT INTO $nomTable (".implode(', ', $tabColonne).")"."
+                        VALUES (".implode(', ', $tabValeur).")";
+            $requete = $pdo->prepare($sql);
+
+            $requete->execute();
+            return true;
+        }catch(PDOException $e){
+            return $e->getMessage();
+        }
+    }
+    public static function update($data,$primary){
+        try {
+            $pdo = self::$pdo;
+            $nomTable = static::$object;
+            $clePrimaire = static::$primary;
+
+            foreach ($data as $attribut => $tuple){
+                $setColumn[] = "{$attribut} = '{$tuple}'";}
+
+            $sql = "UPDATE $nomTable SET ".implode(', ', $setColumn)."
+                 WHERE $clePrimaire=:sql_pk";
+            $requete = $pdo->prepare($sql);
+            $valeur = array(
+                "sql_pk" => $primary);
+
+            $requete->execute($valeur);
+            return true;
+        }catch (PDOException $e){
+            return false;
+        }
+    }
+    public static function delete($primary){
+        try {
+            $pdo = self::$pdo;
+            $nomTable = static::$object;
+            $nomClasse = 'Model' . ucfirst($nomTable);
+            $clePrimaire = static::$primary;
+
+            $sql = "DELETE FROM $nomTable WHERE $clePrimaire=:sql_pk";
+            $requete = $pdo->prepare($sql);
+            $valeur = array(
+                "sql_pk" => $primary);
+
+            $requete->execute($valeur);
+            return true;
+        } catch (PDOException $e) {
+            return false;
         }
     }
 }
-
 Model::Init();
-?>
