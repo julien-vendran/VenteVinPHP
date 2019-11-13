@@ -1,6 +1,5 @@
 <?php
 require_once (File::build_path(array('config','Conf.php')));
-
 class Model{
     public static $pdo;
 
@@ -14,19 +13,26 @@ class Model{
                 array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
             self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch(PDOException $e) { /*On lance une alerte à l'utilisateur*/
-            echo "<script type = 'text/javascript'>" .
-                "alert('Une erreur est servenue ! Veuillez reconfigurer votre base de donnée');" .
-                "</script>";
-            echo 'Une erreur est survenue, essayez de reconfigurer la base de donnée';
+            if (!($_GET['action'] == "initBD") AND (!($_GET['action'] == "initedBD")) ) {
+                echo "<script type = 'text/javascript'>" .
+                    "var fait;" .
+                    'fait = confirm("Il y a un problème de configuration de la BDD \n Cliquez sur \'OK\' pour la reconfigurer");' .
+                    'if (fait === true) {' .
+                    'window.location.replace("index.php?action=initBD");' .
+                    '} else {' .
+                    '' . /*Il faudra savoir quoi faire s'il refuse*/
+                    '}' .
+                    "</script>";
+            }
         }
     }
     public static function selectAll(){
         try {
             $pdo = self::$pdo;
-            $nomTable = static::$object;
-            $nomClasse = 'Model' . ucfirst($nomTable);
+            $nomTable = static::$nomTable;
+            $nomClasse = static::$nomClasse;
 
-            $sql = "SELECT * from $nomTable";
+            $sql = "SELECT * FROM `{$nomTable}`";
             $requete = $pdo->query($sql);
             $requete->setFetchMode(PDO::FETCH_CLASS, $nomClasse);
             return $requete->fetchAll();
@@ -37,11 +43,11 @@ class Model{
     public static function select($primary_value){
         try {
             $pdo = self::$pdo;
-            $nomTable = static::$object;
-            $nomClasse = 'Model' . ucfirst($nomTable);
+            $nomTable = static::$nomTable;
+            $nomClasse = static::$nomClasse;
             $clePrimaire = static::$primary;
 
-            $sql = "SELECT * FROM $nomTable WHERE $clePrimaire=:sql_pk";
+            $sql = "SELECT * FROM `{$nomTable}` WHERE `{$clePrimaire}`=:sql_pk";
             $requete = $pdo->prepare($sql);
             $valeur = array(
                 "sql_pk" => $primary_value);
@@ -61,32 +67,31 @@ class Model{
     public static function insert($data){
         try {
             $pdo = self::$pdo;
-            $nomTable = static::$object;
+            $nomTable = static::$nomTable;
             foreach ($data as $attribut => $tuple){
-                $tabColonne[] = "{$attribut}";
+                $tabColonne[] = "`{$attribut}`";
                 $tabValeur[] = "'{$tuple}'";}
 
-            $sql = "INSERT INTO $nomTable (".implode(', ', $tabColonne).")"."
+            $sql = "INSERT INTO `{$nomTable}` (".implode(', ', $tabColonne).")"."
                         VALUES (".implode(', ', $tabValeur).")";
             $requete = $pdo->prepare($sql);
-
             $requete->execute();
             return true;
         }catch(PDOException $e){
-            return $e->getMessage();
+            return false;
         }
     }
     public static function update($data,$primary){
         try {
             $pdo = self::$pdo;
-            $nomTable = static::$object;
+            $nomTable = static::$nomTable;
             $clePrimaire = static::$primary;
 
             foreach ($data as $attribut => $tuple){
                 $setColumn[] = "{$attribut} = '{$tuple}'";}
 
-            $sql = "UPDATE $nomTable SET ".implode(', ', $setColumn)."
-                 WHERE $clePrimaire=:sql_pk";
+            $sql = "UPDATE `{$nomTable}` SET ".implode(', ', $setColumn)."
+                 WHERE `{$clePrimaire}`=:sql_pk";
             $requete = $pdo->prepare($sql);
             $valeur = array(
                 "sql_pk" => $primary);
@@ -100,11 +105,11 @@ class Model{
     public static function delete($primary){
         try {
             $pdo = self::$pdo;
-            $nomTable = static::$object;
-            $nomClasse = 'Model' . ucfirst($nomTable);
+            $nomTable = static::$nomTable;
+            $nomClasse = static::$nomClasse;
             $clePrimaire = static::$primary;
 
-            $sql = "DELETE FROM $nomTable WHERE $clePrimaire=:sql_pk";
+            $sql = "DELETE FROM `{$nomTable}` WHERE `{$clePrimaire}`=:sql_pk";
             $requete = $pdo->prepare($sql);
             $valeur = array(
                 "sql_pk" => $primary);

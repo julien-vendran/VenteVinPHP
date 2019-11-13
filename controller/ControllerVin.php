@@ -6,93 +6,107 @@ require_once ($path); // chargement du modèle
 
 class ControllerVin {
 
-    public static function readAll() {
-        $tab_v = ModelVin::getAllVins(); //appel au modèle pour gerer la BD
+    public static function readAllVins() {
+        $tab = ModelVin::selectAll();
         $controller = 'Vin';
         $view = 'list';
         $pagetitle = 'Liste de Vins';
         require File::build_path(array('view', 'view.php')); //redirige vers la vue
     }
 
-    public static function read() {
-        $v = ModelVin::getVinByImmat($_GET['immat']);
-        $controller = 'Vin';
+    public static function readVin() {
+        $v = ModelVin::select($_GET['idVin']);
+        $controller = 'vin';
         if (empty($v)) {
             $view = 'error';
-            $pagetitle = 'ERREUR';
-            require File::build_path(array('view', 'view.php'));
+            $pagetitle = 'ERREUR';;
         } else {
             $view = 'detail';
             $pagetitle = 'Détail Vin';
-            require File::build_path(array('view', 'view.php'));
         }
+        require File::build_path(array('view', 'view.php'));
     }
 
-    public static function create() {
+    public static function createVin() {
         $controller = 'Vin';
         $view = 'create';
         $pagetitle = 'Création Vin';
         require File::build_path(array('view', 'view.php'));
     }
 
-    public static function created() {
-        $immat = $_GET['immatriculation'];
-        $marque = $_GET['marque'];
-        $couleur = $_GET['couleur'];
-        $Vin = new ModelVin($marque, $couleur, $immat);
-        $ok = $Vin->save();
-        $controller = 'Vin';
-        $tab_v = ModelVin::getAllVins(); //appel au modèle pour gerer la BD
+    public static function createdVin() {
+        $valuesVin = array(
+            "idVin" => $_GET['idVin'],
+            "nomVin" => $_GET['nomVin'],
+            "anneeVin" => $_GET['anneeVin'],
+            "descriptionVin" => $_GET['descriptionVin'],
+            "typeVin" => $_GET['typeVin'],
+            "medailleVin" => $_GET['medailleVin'],
+            "prixVin" => $_GET['prixVin'],
+            "idDomaine" => $_GET['idDomaine'],
+        );
+        $ok = ModelVin::insert($valuesVin);
+        $tab = ModelVin::selectAll(); //On va s'en servir dans les vues pour appeler la liste après insertion
         if (!$ok) {
+            $controller = 'vin';
             $view = 'error';
             $pagetitle = 'ERREUR';
-            require File::build_path(array('view', 'view.php'));
         } else {
+            $controller = 'vin';
             $view = 'created';
             $pagetitle = 'Vin Crée';
-            require File::build_path(array('view', 'view.php'));
         }
+        require File::build_path(array('view', 'view.php'));
     }
 
-    public static function deleted() {
-        $immat = $_GET['immat'];
-        $v = ModelVin::getVinByImmat($_GET['immat']);
-        $ok = $v->delete();
-        $tab_v = ModelVin::getAllVins(); //appel au modèle pour gerer la BD
-        $controller = 'Vin';
-        if (!$ok) {
+    public static function deletedVin() {
+        $idVin = $_GET['idVin'];
+        if (!is_null($idVin)) {
             $view = 'error';
+            $controller = 'vin';
             $pagetitle = 'ERREUR';
-            require File::build_path(array('view', 'view.php'));
         } else {
+            ModelVin::delete($idVin);
+            $tab = ModelVin::selectAll();
+            $controller = 'vin';
             $view = 'deleted';
             $pagetitle = 'Vin Supprimée';
-            require File::build_path(array('view', 'view.php'));
         }
+        require File::build_path(array('view', 'view.php'));
     }
 
-    public static function update() {
-        $v = ModelVin::getVinByImmat($_GET['immat']);
+    public static function updateVin() {
+        $v = ModelVin::select($_GET['idVin']);
         $controller = 'Vin';
         $view = 'update';
         $pagetitle = 'Modification Vin';
         require File::build_path(array('view', 'view.php'));
     }
     
-    public static function updated(){
-        $values = array($_GET['immat'], $_GET['marque'], $_GET['couleur']);
-        $ok = ModelVin::update($values);
-        $controller = 'Vin';
-        $tab_v = ModelVin::getAllVins(); //appel au modèle pour gerer la BD
+    public static function updatedVin(){
+        $idVin = $_GET['idVin'];
+        $values = array(
+            "idVin" => $idVin,
+            "nomVin" => $_GET['nomVin'],
+            "anneeVin" => $_GET['anneeVin'],
+            "descriptionVin" => $_GET['descriptionVin'],
+            "typeVin" => $_GET['typeVin'],
+            "medailleVin" => $_GET['medailleVin'],
+            "prixVin" => $_GET['prixVin'],
+            "idDomaine" => $_GET['idDomaine']
+        );
+        $ok = ModelVin::update($values, $idVin);
+        $tab_v = ModelVin::selectAll();
         if (!$ok) {
+            $controller = 'vin';
             $view = 'error';
             $pagetitle = 'ERREUR';
-            require File::build_path(array('view', 'view.php'));
         } else {
+            $controller = 'vin';
             $view = 'updated';
             $pagetitle = 'Vin Modifiée';
-            require File::build_path(array('view', 'view.php'));
         }
+        require File::build_path(array('view', 'view.php'));
     }
 
 }

@@ -1,22 +1,20 @@
 <?php
-    foreach ($tab_v as $v) {
-        $immat = $v->getImmatriculation();
-        $immat2 = $immat;
+    foreach ($tab as $v) {
+        $idVin = $v->get('idVin');
         echo ""
         . "<p>"
         . "Vin d'immatriculation "
-        . "<a href = \"?action=read&immat=" . rawurlencode($immat) . "\">"
-        . htmlspecialchars($immat)
+        . "<a href = \"?action=readVin&$idVin=" . rawurlencode($idVin) . "\">"
+        . htmlspecialchars($idVin)
         . "</a>"
         . " -- "
-        . "<a href = \"?action=update&immat=" . rawurlencode($immat) . "\">"
+        . "<a href = \"?action=updateVin&$idVin=" . rawurlencode($idVin) . "\">"
         . "Modifier"
         . "</a>"
         . " -- "
-        . "<a href = \"?action=deleted&immat=" . rawurlencode($immat) . "\">"
+        . "<a href = \"?action=deletedVin&$idVin=" . rawurlencode($idVin) . "\">"
         . "Supprimer"
         . "</a>"
         . "</p>";
     }
-    echo "<a id=\"create\" href = \"?action=create\">Créer une autre Vin</a>";
-?>
+    echo "<a id=\"create\" href = \"?action=createVin\">Créer une autre Vin</a>";

@@ -8,15 +8,13 @@
     <body>
         <header>
             <nav>
-                <?php echo '<a href="index.php?action=readAll">Vins</a>' ?>
-                <?php echo '<a href="index.php?action=readAll&controller=utilisateur">Utilisateurs</a>' ?>
-                <?php echo '<a href="index.php?action=readAll&controller=trajet">Trajets</a>' ?>
+                <?php echo '<a href="index.php?action=readAllVins">Vins</a>' ?>
+                <?php echo '<a href="index.php?action=readAllDomaines&controller=Domaine">Domaines</a>' ?>
+                <?php echo '<a href="index.php?action=readAllViticulteurs&controller=Viticulteur">Viticulteurs</a>' ?>
             </nav>
         </header>
         <div>
             <?php
-            // Si $controleur='Vin' et $view='list',
-            // alors $filepath="/chemin_du_site/view/Vin/list.php"
             $filepath = File::build_path(array("view", $controller, "$view.php"));
             require $filepath;
             ?>
