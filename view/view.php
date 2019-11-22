@@ -6,14 +6,14 @@
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="style.css" rel="stylesheet">
+        <link href="./view/style.css" type="text/css" rel="stylesheet">
         <meta charset="UTF-8">
             <title>Vente de vins</title>
     </head>
     <body>
             <header>
                     <div id="bandeau">
-                            <img src="bandeau.png" alt="logo">
+                            <img src="./view/images/bandeau.png" alt="logo">
                     </div>
                     <nav>
                         <div id="menu" class="nav-wrapper">
