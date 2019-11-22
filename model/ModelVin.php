@@ -2,9 +2,8 @@
 
     require_once (File::build_path(array('model','Model.php')));
 
-    class ModelVin extends Model
-    {
-        protected static $nomTable = 'Vin';
+    class ModelVin extends Model {
+        protected static $nomTable = 'vins';
         protected static $nomClasse = 'ModelVin';
         protected static $primary = 'idVin';
 
@@ -18,14 +17,14 @@
         private $idDomaine; //Clé étrangère
 
         //Constrcuteur
-        public function __construct($idV = NULL, $nomV = NULL, $anneV = NULL, $descrV = NULL, $typeV = NULL, $medV = NULL, $prixV = NULL, $idDom = NULL) {
-            if (is_null($idV) && is_null($nomV) && is_null($anneV) && is_null($descrV) && is_null($typeV) && is_null($medV) && is_null($prixV) && is_null($idDom)) {
+        public function __construct($idV = NULL, $nomV = NULL, $anneV = NULL, $descrV = NULL, $typeV = NULL, $medVin = NULL, $prixV = NULL, $idDom = NULL) {
+            if (!is_null($idV) && !is_null($nomV) && !is_null($anneV) && !is_null($descrV) && !is_null($typeV) && !is_null($prixV) && !is_null($idDom)) {
                 $this->idVin = $idV;
                 $this->nomVin = $nomV;
                 $this->anneeVin = $anneV;
                 $this->descriptionVin = $descrV;
                 $this->typeVin = $typeV;
-                $this->medailleVin = $medV;
+                $this->medailleVin = "";
                 $this->prixVin = $prixV;
                 $this->idDomaine = $idDom;
             }
@@ -42,8 +41,8 @@
             return parent::selectAll();
         }
 
-        public static function select($primary_value) {
-            return parent::select($primary_value);
+        public static function select($primary) {
+            return parent::select($primary);
         }
 
         public static function insert($data) {

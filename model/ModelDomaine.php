@@ -3,7 +3,7 @@
 
 class ModelDomaine
 {
-    protected static $nomTable = 'Domaine';
+    protected static $nomTable = 'domaines';
     protected static $nomClasse = 'ModelDomaine';
     protected static $primary = 'idDomaine';
 

@@ -34,7 +34,6 @@ class ControllerVin {
 
     public static function createdVin() {
         $valuesVin = array(
-            "idVin" => $_GET['idVin'],
             "nomVin" => $_GET['nomVin'],
             "anneeVin" => $_GET['anneeVin'],
             "descriptionVin" => $_GET['descriptionVin'],
@@ -84,7 +83,6 @@ class ControllerVin {
     public static function updatedVin(){
         $idVin = $_GET['idVin'];
         $values = array(
-            "idVin" => $idVin,
             "nomVin" => $_GET['nomVin'],
             "anneeVin" => $_GET['anneeVin'],
             "descriptionVin" => $_GET['descriptionVin'],

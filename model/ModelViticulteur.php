@@ -2,7 +2,7 @@
     require_once File::build_path(array('model', 'Model.php'));
 
     class ModelViticulteur extends Model {
-        protected static $nomTable = 'Viticulteur';
+        protected static $nomTable = 'viticulteurs';
         protected static $nomClasse = 'ModelViticulteur';
         protected static $primary = 'idViticulteur';
 
