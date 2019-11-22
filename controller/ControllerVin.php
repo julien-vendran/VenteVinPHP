@@ -1,8 +1,6 @@
 <?php
 
-$path_array = array('model', 'ModelVin.php');
-$path = File::build_path($path_array);
-require_once ($path); // chargement du modèle
+require_once File::build_path(array('model', 'ModelVin.php')); // chargement du modèle
 
 class ControllerVin {
 
@@ -19,7 +17,7 @@ class ControllerVin {
         $controller = 'vin';
         if (empty($v)) {
             $view = 'error';
-            $pagetitle = 'ERREUR';;
+            $pagetitle = 'ERREUR';
         } else {
             $view = 'detail';
             $pagetitle = 'Détail Vin';
