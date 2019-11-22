@@ -10,39 +10,29 @@
         private $nomViticulteur;
         private $prenomViticulteur;
 
-
-
-
-
-        public function get($nom_attribut)
-        {
+        public function get($nom_attribut) {
             if (property_exists($this, $nom_attribut))
                 return $this->$nom_attribut;
             return false;
         }
 
-        public static function selectAll()
-        {
+        public static function selectAll() {
             return parent::selectAll();
         }
 
-        public static function select($primary_value)
-        {
+        public static function select($primary_value) {
             return parent::select($primary_value);
         }
 
-        public static function insert($data)
-        {
+        public static function insert($data) {
             return parent::insert($data);
         }
 
-        public static function update($data, $primary)
-        {
+        public static function update($data, $primary) {
             return parent::update($data, $primary);
         }
 
-        public static function delete($primary)
-        {
+        public static function delete($primary) {
             return parent::delete($primary);
         }
     }

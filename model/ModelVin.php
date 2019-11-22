@@ -18,8 +18,7 @@
         private $idDomaine; //Clé étrangère
 
         //Constrcuteur
-        public function __construct($idV = NULL, $nomV = NULL, $anneV = NULL, $descrV = NULL, $typeV = NULL, $medV = NULL, $prixV = NULL, $idDom = NULL)
-        {
+        public function __construct($idV = NULL, $nomV = NULL, $anneV = NULL, $descrV = NULL, $typeV = NULL, $medV = NULL, $prixV = NULL, $idDom = NULL) {
             if (is_null($idV) && is_null($nomV) && is_null($anneV) && is_null($descrV) && is_null($typeV) && is_null($medV) && is_null($prixV) && is_null($idDom)) {
                 $this->idVin = $idV;
                 $this->nomVin = $nomV;
@@ -33,35 +32,29 @@
         }
 
 
-        public function get($nom_attribut)
-        {
+        public function get($nom_attribut) {
             if (property_exists($this, $nom_attribut))
                 return $this->$nom_attribut;
             return false;
         }
 
-        public static function selectAll()
-        {
+        public static function selectAll() {
             return parent::selectAll();
         }
 
-        public static function select($primary_value)
-        {
+        public static function select($primary_value) {
             return parent::select($primary_value);
         }
 
-        public static function insert($data)
-        {
+        public static function insert($data) {
             return parent::insert($data);
         }
 
-        public static function update($data, $primary)
-        {
+        public static function update($data, $primary) {
             return parent::update($data, $primary);
         }
 
-        public static function delete($primary)
-        {
+        public static function delete($primary) {
             return parent::delete($primary);
         }
     }
