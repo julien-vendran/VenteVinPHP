@@ -12,20 +12,18 @@
 </head>
 <body>
 <header>
-    <div id="bandeau">
-        <?php
-        require File::build_path(array("view", $controller, "$view.php"));
-        ?>
-        <main>
-            <?php
-            $filepath = File::build_path(array("view", $controller, "$view.php"));
-            require $filepath;
-            ?>
-        </main>
-        <footer>
-            <div>
-                © 2019 Copyright caveau-online.fr
-            </div>
-        </footer>
+    <?php require File::build_path(array('view', 'header.php'));?>
+</header>
+<main>
+    <?php
+    $filepath = File::build_path(array("view", $controller, "$view.php"));
+    require $filepath;
+    ?>
+</main>
+<footer>
+    <div>
+        © 2019 Copyright caveau-online.fr
+    </div>
+</footer>
 </body>
 </html>
