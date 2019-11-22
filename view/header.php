@@ -4,7 +4,7 @@
 <nav>
     <div id="menu" class="nav-wrapper">
         <ul id="nav-mobile" class="hide-on-med-and-down">
-            <li><a href="badges.html">Actualité</a></li>
+            <li><a href="badges.html">Vins</a></li>
             <li><a href="sass.html">Acceuil</a></li>
             <li><a href="collapsible.html">Boutique</a></li>
         </ul>
