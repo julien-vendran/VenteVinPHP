@@ -17,26 +17,20 @@ require_once File::build_path(array('controller', 'ControllerUtilisateur.php'));
     }*/
 
     if (!isset($_GET['action']) && !isset($_POST['action'])) {
-        require File::build_path(array('view','view.php'));
+        //require File::build_path(array('view','view.php'));
+        $action = "accueil";
     } else if (!isset($_POST['action'])){
         $action = $_GET['action'];
     } else {
         $action = $_POST['action'];
     }
 
-    if (isset($_GET['controller'])){
-        $controlle = $_GET['controller'];
-    }
-    else
-        $controlle = 'vin';
-
-    $calledController = 'Controller' . $controlle;
-    echo "la : " . $calledController;
 
     $methods_Vin = get_class_methods('ControllerVin');
     $methods_Domaine = get_class_methods('ControllerDomaine');
     $methods_Viticulteur = get_class_methods('ControllerViticulteur');
     $methods_Utilisateur = get_class_methods('ControllerUtilisateur');
+
     if (in_array($action, $methods_Vin))
         ControllerVin::$action();
     else if (in_array($action, $methods_Domaine))
@@ -49,5 +43,10 @@ require_once File::build_path(array('controller', 'ControllerUtilisateur.php'));
         $controller = 'vin';
         $view = 'error';
         $pagetitle = 'ERREUR';
+        require File::build_path(array('view','view.php'));
+    } else {
+        $controller = 'accueil';
+        $view = 'accueil';
+        $pagetitle = "Accueil";
         require File::build_path(array('view','view.php'));
     }
