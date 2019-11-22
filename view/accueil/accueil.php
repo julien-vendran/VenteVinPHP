@@ -9,14 +9,16 @@
     </p>
 </div>
 <div class="parallax-container">
-    <div class="parallax"><img src="./view/images/cave.png"></div>
+    <div class="parallax"><img src="./view/images/cave2.jpg"></div>
 </div>
 
 <div class="container">
     Retrouver notre large selection de vin directment dans notre boutique.
 
 </div>
-
+<div class="parallax-container">
+    <div class="parallax"><img src="./view/images/cave3.jpg"></div>
+</div>
 <div class="container">
     Découvrer nos domaines partenaires, leur histoire ainsi que les vins qu'ils produisent directement sur leur page.
 
