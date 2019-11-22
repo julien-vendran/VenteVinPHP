@@ -4,7 +4,7 @@ require_once File::build_path(array('controller','ControllerDomaine.php'));
 require_once File::build_path(array('controller','ControllerViticulteur.php'));
 require_once File::build_path(array('controller', 'ControllerUtilisateur.php'));
 
-    if (Session::est_connecte()) {
+    /*if (Session::est_connecte()) {
         $action = 'accueil';
         $controller = 'accueil';
         $view = 'accueilConnecte';
@@ -14,7 +14,7 @@ require_once File::build_path(array('controller', 'ControllerUtilisateur.php'));
         $controller = 'accueil';
         $view = 'accueilNonConnecte';
         $pagetitle = 'Bienvenue ! ';
-    }
+    }*/
 
     if (!isset($_GET['action']) && !isset($_POST['action'])) {
         require File::build_path(array('view','view.php'));

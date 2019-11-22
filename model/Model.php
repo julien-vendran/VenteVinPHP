@@ -13,17 +13,7 @@ class Model{
                 array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
             self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch(PDOException $e) { /*On lance une alerte à l'utilisateur*/
-            if (!($_GET['action'] == "initBD") AND (!($_GET['action'] == "initedBD")) ) {
-                echo "<script type = 'text/javascript'>" .
-                    "var fait;" .
-                    'fait = confirm("Il y a un problème de configuration de la BDD \n Cliquez sur \'OK\' pour la reconfigurer");' .
-                    'if (fait === true) {' .
-                    'window.location.replace("index.php?action=initBD");' .
-                    '} else {' .
-                    '' . /*Il faudra savoir quoi faire s'il refuse*/
-                    '}' .
-                    "</script>";
-            }
+            echo 'pb bd';
         }
     }
     public static function selectAll(){
