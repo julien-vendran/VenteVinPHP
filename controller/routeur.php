@@ -14,14 +14,14 @@ require_once File::build_path(array('controller','ControllerViticulteur.php'));
         $controlle = $_GET['controller'];
     }
     else
-        $controlle = 'Vin';
+        $controlle = 'vin';
 
     $calledController = 'Controller' . $controlle;
     $methods = get_class_methods($calledController);
     if (in_array($action, $methods))
         $calledController::$action();
     else {
-        $controller = 'Vin';
+        $controller = 'vin';
         $view = 'error';
         $pagetitle = 'ERREUR';
         require File::build_path(array('view','view.php'));

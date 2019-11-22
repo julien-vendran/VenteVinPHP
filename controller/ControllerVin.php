@@ -8,7 +8,7 @@ class ControllerVin {
 
     public static function readAllVins() {
         $tab = ModelVin::selectAll();
-        $controller = 'Vin';
+        $controller = 'vin';
         $view = 'list';
         $pagetitle = 'Liste de Vins';
         require File::build_path(array('view', 'view.php')); //redirige vers la vue
@@ -28,7 +28,7 @@ class ControllerVin {
     }
 
     public static function createVin() {
-        $controller = 'Vin';
+        $controller = 'vin';
         $view = 'create';
         $pagetitle = 'Création Vin';
         require File::build_path(array('view', 'view.php'));
@@ -77,12 +77,12 @@ class ControllerVin {
 
     public static function updateVin() {
         $v = ModelVin::select($_GET['idVin']);
-        $controller = 'Vin';
+        $controller = 'vin';
         $view = 'update';
         $pagetitle = 'Modification Vin';
         require File::build_path(array('view', 'view.php'));
     }
-    
+
     public static function updatedVin(){
         $idVin = $_GET['idVin'];
         $values = array(
@@ -110,5 +110,3 @@ class ControllerVin {
     }
 
 }
-
-?>
