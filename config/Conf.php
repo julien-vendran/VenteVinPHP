@@ -5,10 +5,10 @@ class Conf {
     static private $debug = true;
     
     static private $databases = array(
-        'hostname' => 'localhost',
-        'database' => 'ventevinphp',
-        'login' => 'root',
-        'password' => ''
+        'hostname' => 'webinfo',
+        'database' => 'bofin',
+        'login' => 'bofin',
+        'password' => 'bofi2000'
     );
 
     static public function getLogin() {

@@ -1,94 +1,40 @@
 <!DOCTYPE html>
 <html>
     <head>
+            <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
         <meta charset="UTF-8">
-        <title><?php echo $pagetitle; ?></title>
-         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"> 
+            <title>Vente de vins</title>
     </head>
     <body>
-        <header>
-            <nav>
-                <?php echo '<a href="index.php?action=readAllVins">Vins</a>' ?>
-                <?php echo '<a href="index.php?action=readAllDomaines&controller=Domaine">Domaines</a>' ?>
-                <?php echo '<a href="index.php?action=readAllViticulteurs&controller=Viticulteur">Viticulteurs</a>' ?>
-            </nav>
-        </header>
-        <div>
-            <?php
-            $filepath = File::build_path(array("view", $controller, "$view.php"));
-            require $filepath;
-            ?>
-        </div>
-        <footer>
-            <p>
-                Site de covoiturage de Mathis Goichon.
-            </p>
-        </footer>
+            <header>
+                    <div id="bandeau">
+                            <img src="bandeau.png" alt="logo">
+                    </div>
+                    <nav>
+                        <div id="menu" class="nav-wrapper">
+                          <ul id="nav-mobile" class="hide-on-med-and-down">
+                            <li><a href="badges.html">Actualité</a></li>
+                            <li><a href="sass.html">Acceuil</a></li>
+                            <li><a href="collapsible.html">Boutique</a></li>
+                          </ul>
+                        </div>
+                    </nav>
+            </header>
+            <main>
+                <?php
+                $filepath = File::build_path(array("view", $controller, "$view.php"));
+                require $filepath;
+                ?>
+            </main>
+            <footer>
+                    <div>
+                    © 2019 Copyright caveau-online.fr 
+                    </div>
+            </footer>
     </body>
 </html>
-
-<style type="text/css">
-    html, body {
-        height: 100%;
-        padding: 0;
-        margin: 0;
-        font-family: 'Roboto', sans-serif;
-    }
-    body {
-        display: flex;
-        flex-direction: column;
-        margin-left: auto;
-    }
-    body > div{
-        margin-left: 10%;
-        width: 80%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-size: 20px;
-    }
-    body > div a{
-        text-decoration: none;
-        color: #424242;
-    }
-    nav{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;    
-        align-items: center;
-        font-size: 30px;
-        height: 50px;
-        background-color: lightyellow;
-        border-bottom: 0.5px solid black;
-        margin-bottom: 30px;
-        padding: 10px;
-    }
-    nav > a{
-        text-decoration: none;
-        color: black;
-    }
-    nav > a:nth-child(2), nav > a:nth-child(3){
-        margin-left: 5%;
-    }
-    fieldset > p:last-child{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
-    #create{
-        margin-top: 30px;
-        text-decoration: none;
-        color: #424242;
-    }
-    footer{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        margin-top: auto;
-    }
-    footer > p{
-        margin: 0;
-        font-size: 20px;
-        padding: 20px;
-    }
-</style>
