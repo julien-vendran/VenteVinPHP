@@ -37,7 +37,7 @@ CREATE TABLE `viticulteurs` (
    `idUtilisateur` INT NOT NULL AUTO_INCREMENT ,
    `loginUtilisateur` VARCHAR(32) NOT NULL ,
    `mdpUtilisateur` VARCHAR(64) NOT NULL ,
-   `nomUtilisateur` INT NOT NULL ,
+   `nomUtilisateur` VARCHAR(32) NOT NULL ,
    PRIMARY KEY (`idUtilisateur`))
    ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

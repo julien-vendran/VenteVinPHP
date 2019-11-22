@@ -2,8 +2,8 @@
 
 require_once File::build_path(array('model', 'Model.php'));
 
-class ModelUtilisateur {
-    protected static $nomTable = 'Utilisateur';
+class ModelUtilisateur extends Model{
+    protected static $nomTable = 'utilisateurs';
     protected static $nomClasse = 'ModelUtilisateur';
     protected static $primary = 'idUtilisateur';
 

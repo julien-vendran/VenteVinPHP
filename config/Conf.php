@@ -6,9 +6,9 @@ class Conf {
     
     static private $databases = array(
         'hostname' => 'webinfo',
-        'database' => 'bofin',
-        'login' => 'bofin',
-        'password' => 'Nico34410'
+        'database' => 'vendranj',
+        'login' => 'vendranj',
+        'password' => '123456julien'
     );
 
     static public function getLogin() {
