@@ -20,25 +20,24 @@ class ModelPanier {
     public static function ajouterArticle($idVin, $nombreBouteille,$prixVin){
 
         //Si le panierVin existe
-        if (ModelPanier::creationpanierVin() && !ModelPanier::estVerrouille())
-        {
+        if (ModelPanier::creationpanierVin() && !ModelPanier::estVerrouille()) {
             //Si le produit existe déjà on ajoute seulement la quantité
             $positionProduit = array_search($idVin,  $_SESSION['panierVin']['idVin']);
 
-            if ($positionProduit !== false)
-            {
+            if ($positionProduit !== false) {
                 $_SESSION['panierVin']['nombreBouteille'][$positionProduit] += $nombreBouteille ;
             }
-            else
-            {
+            else {
                 //Sinon on ajoute le produit
                 array_push( $_SESSION['panierVin']['idVin'],$idVin);
                 array_push( $_SESSION['panierVin']['nombreBouteille'],$nombreBouteille);
                 array_push( $_SESSION['panierVin']['prixVin'],$prixVin);
             }
+            return true;
         }
         else
-            echo "Un problème est survenu veuillez contacter l'administrateur du site.";
+            return false;
+            //echo "Un problème est survenu veuillez contacter l'administrateur du site.";
     }
 
     public static function supprimerArticle($idVin){

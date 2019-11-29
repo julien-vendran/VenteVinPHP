@@ -69,6 +69,7 @@ class Model{
             $requete->execute();
             return true;
         }catch(PDOException $e){
+            echo $e->getMessage();
             return false;
         }
     }

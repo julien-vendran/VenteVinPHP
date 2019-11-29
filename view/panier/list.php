@@ -13,7 +13,7 @@
         <tr>
             <td>Libellé</td>
             <td>Quantité</td>
-            <td>Prix Unitaire</td>
+            <td>Prix Total</td>
             <td>Action</td>
         </tr>
 
@@ -28,12 +28,31 @@
             {
                 for ($i=0 ;$i < $nbArticles ; $i++)
                 {
-                    echo "<tr>";
-                    echo "<td>".htmlspecialchars($_SESSION['panierVin']['idVin'][$i])."</ td>";
-                    echo "<td><input type=\"text\" size=\"4\" name=\"q[]\" value=\"".htmlspecialchars($_SESSION['panierVin']['nombreBouteille'][$i])."\"/></td>";
-                    echo "<td>".htmlspecialchars($_SESSION['panierVin']['prixVin'][$i])."</td>";
-                    echo "<td><a href=\"".htmlspecialchars("panier.php?action=suppression&l=".rawurlencode($_SESSION['panierVin']['idVin'][$i]))."\">XX</a></td>";
-                    echo "</tr>";
+                    $v = ModelVin::select($_SESSION['panierVin']['idVin'][$i]);
+                    $nomVin = $v->get('nomVin');
+                    $qteV = $v->get('qteVin');
+                ?>
+                    <tr>
+                        <td>
+                            <p>Le vin <?php echo $nomVin?></p>
+                        </td>
+                        <td>
+                            <input class = "white-text" type = 'text' size="4" value = "<?php echo htmlspecialchars($_SESSION['panierVin']['nombreBouteille'][$i])?>" max = "<?php echo $qteV?>">
+                        </td>
+                        <td>
+                            <?php
+                                $res = $_SESSION['panierVin']['nombreBouteille'][$i] * $_SESSION['panierVin']['prixVin'][$i];
+                                echo $res;
+                            ?>
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+
+
+
+        <?php
                 }
 
                 echo "<tr><td colspan=\"2\"> </td>";
