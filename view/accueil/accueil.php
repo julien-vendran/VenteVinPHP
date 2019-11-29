@@ -13,7 +13,12 @@
 </div>
 
 <div class="container">
-    Retrouver notre large selection de vin directment dans notre boutique.
+    <p>Retrouver notre large selection de vin directment dans notre boutique.</p>
+    <a href="?action=readAllVins">
+        <button class="btn waves-effect waves-light">
+            Boutique
+        </button>
+    </a>
 
 </div>
 <div class="parallax-container">

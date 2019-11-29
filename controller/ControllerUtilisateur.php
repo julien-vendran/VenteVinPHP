@@ -58,4 +58,11 @@ class ControllerUtilisateur {
                 '</script>';
         }
     }
+
+    public static function inscrireUser () {
+        $controller = 'utilisateur';
+        $view = 'inscription';
+        $pagetitle = 'Inscription';
+        require File::build_path(array('view', 'view.php'));
+    }
 }

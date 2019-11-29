@@ -1,11 +1,10 @@
 <div class="container">
-    <h1>Bienvenue sur caveau-online</h1>
-    <h4>Merci de vous connecter</h4>
+    <h1>Inscription</h1>
 
     <form method = "post">
         <fieldset>
             <legend>
-                Connexion
+                Inscription
             </legend>
             <p class = "p_column">
                 <label for = "login_id">
@@ -20,21 +19,13 @@
                 <input type="password" name="mdp" id="mdp_id" required/>
             </p>
             <p>
-                <input type = "hidden" name = "action" value = "connectedUser" />
+                <input type = "hidden" name = "action" value = "inscritUser" />
             </p>
             <p>
                 <button class="btn waves-effect waves-light" type="submit" name="action">
-                    Connexion
+                    S'inscire
                 </button>
             </p>
         </fieldset>
     </form>
-    <p>
-        Pas encore inscrit ?
-        <a href="?action=inscrireUser">
-            <button class="btn waves-effect waves-light">
-                Inscription
-            </button>
-        </a>
-    </p>
 </div>
