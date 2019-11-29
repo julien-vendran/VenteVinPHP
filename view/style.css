@@ -2,6 +2,7 @@
 	height: 10vh;
 	display: flex;
 	flex-direction: row;
+	background-color: white;
 }
 
 #bandeau img{

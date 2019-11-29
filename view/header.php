@@ -1,5 +1,5 @@
 <div id="bandeau">
-    <img src="./view/images/bandeau.png" alt="logo">
+    <img src="./view/images/bandeau2.png" alt="logo">
 </div>
 <nav>
     <div id="menu" class="nav-wrapper">
