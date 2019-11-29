@@ -62,3 +62,15 @@ html{
 }
 
 /* Fin sticky footer */
+
+/*List de vin*/
+.sizeimg{
+	max-height: 400px;
+	min-height: 400px;
+	overflow: hidden;
+}
+.sizetxt{
+	max-height: 100px;
+	min-height: 100px;
+	overflow: hidden;
+}
