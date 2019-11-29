@@ -65,7 +65,6 @@ class Model{
 
             $sql = "INSERT INTO `{$nomTable}` (".implode(', ', $tabColonne).")"."
                         VALUES (".implode(', ', $tabValeur).")";
-            var_dump($sql);
             $requete = $pdo->prepare($sql);
             $requete->execute();
             return true;

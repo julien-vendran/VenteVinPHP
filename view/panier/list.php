@@ -1,8 +1,5 @@
-<?php
-require_once '../../lib/Session.php';
-echo '<?xml version="1.0" encoding="utf-8"?>';?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <title>Votre panier</title>
 </head>
@@ -22,7 +19,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>';?>
 
 
         <?php
-        if (Session::creationPanier())
+        if (ModelPanier::creationPanierVin())
         {
             $nbArticles=count($_SESSION['panierVin']['idVin']);
             if ($nbArticles <= 0)
@@ -41,7 +38,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>';?>
 
                 echo "<tr><td colspan=\"2\"> </td>";
                 echo "<td colspan=\"2\">";
-                echo "Total : ".Session::MontantGlobal();
+                echo "Total : ".ModelPanier::MontantGlobal();
                 echo "</td></tr>";
 
                 echo "<tr><td colspan=\"4\">";
