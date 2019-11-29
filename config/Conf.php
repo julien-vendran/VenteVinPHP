@@ -5,10 +5,10 @@ class Conf {
     static private $debug = true;
     
     static private $databases = array(
-        'hostname' => 'webinfo',
-        'database' => 'vendranj',
-        'login' => 'vendranj',
-        'password' => '123456julien'
+        'hostname' => 'localhost',
+        'database' => 'ventevinphp',
+        'login' => 'root',
+        'password' => ''
     );
 
     static public function getLogin() {
