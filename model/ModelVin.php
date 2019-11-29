@@ -15,11 +15,12 @@
         private $medailleVin; // par défaut null -- varchar(10)
         private $prixVin; // INT
         private $qteVin; //int
+        private $imageVin; //Varchar(20)
         private $idDomaine; //Clé étrangère
 
         //Constrcuteur
-        public function __construct($idV = NULL, $nomV = NULL, $anneV = NULL, $descrV = NULL, $typeV = NULL, $medVin = NULL, $prixV = NULL, $qteVin = NULL, $idDom = NULL) {
-            if (!is_null($idV) && !is_null($nomV) && !is_null($anneV) && !is_null($descrV) && !is_null($typeV) && !is_null($prixV) && !is_null($qteVin) && !is_null($idDom)) {
+        public function __construct($idV = NULL, $nomV = NULL, $anneV = NULL, $descrV = NULL, $typeV = NULL, $medVin = NULL, $prixV = NULL, $qteVin = NULL, $idDom = NULL, $imageVin = NULL) {
+            if (!is_null($idV) && !is_null($nomV) && !is_null($anneV) && !is_null($descrV) && !is_null($typeV) && !is_null($prixV) && !is_null($qteVin) && !is_null($idDom) && !is_null($imageVin)) {
                 $this->idVin = $idV;
                 $this->nomVin = $nomV;
                 $this->anneeVin = $anneV;
@@ -27,7 +28,8 @@
                 $this->typeVin = $typeV;
                 $this->medailleVin = "";
                 $this->prixVin = $prixV;
-                $this->qteVin = $qteVin;    
+                $this->qteVin = $qteVin;
+                $this->imageVin = $imageVin;
                 $this->idDomaine = $idDom;
             }
         }

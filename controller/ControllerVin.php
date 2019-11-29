@@ -40,6 +40,8 @@ class ControllerVin {
             "typeVin" => $_GET['typeVin'],
             "medailleVin" => $_GET['medailleVin'],
             "prixVin" => $_GET['prixVin'],
+            "qteVin" => $_GET['qteVin'],
+            "imageVin" => "./view/images/" . $_GET['image'],
             "idDomaine" => $_GET['idDomaine'],
         );
         $ok = ModelVin::insert($valuesVin);
