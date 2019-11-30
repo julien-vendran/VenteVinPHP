@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+<?php
+    if (isset($_GET['idVin']) && isset($_GET['nombreBouteile'])) {
+        ModelPanier::modifierQTeArticle($_GET['idVin'], $_GET['nombreBouteile']);
+        echo '<script>' .
+                "window.location.replace('index.php?action=readPanier');" .
+            '</script>';
+    }
+?>
+
 <html lang="fr">
 <head>
     <title>Votre panier</title>
@@ -37,12 +46,13 @@
                             <p>Le vin <?php echo $nomVin?></p>
                         </td>
                         <td>
-                            <input class = "white-text" type = 'text' size="4" value = "<?php echo htmlspecialchars($_SESSION['panierVin']['nombreBouteille'][$i])?>" max = "<?php echo $qteV?>">
+                            <input onchange="var id = '<?php echo $_SESSION['panierVin']['idVin'][$i]?>'; miseAJour(id, this.value)" class = "white-text" type = 'number' size="4" pattern="[0-9]*"  value = "<?php echo htmlspecialchars($_SESSION['panierVin']['nombreBouteille'][$i])?>" max = "<?php echo $qteV?>">
                         </td>
                         <td>
                             <?php
                                 $res = $_SESSION['panierVin']['nombreBouteille'][$i] * $_SESSION['panierVin']['prixVin'][$i];
-                                echo $res;
+                                echo $res . " €";
+                            /*type="number" step="1" min="0" max="<?php echo $nbBouteille?>" name="qteVin" value="1" title="Qté" size="4" pattern="[0-9]*" inputmode="numeric"*/
                             ?>
                         </td>
                         <td>
@@ -53,23 +63,42 @@
 
 
         <?php
-                }
+                } ?>
+                <tr>
+                    <td></td>
+                    <td>
+                        Total :
+                    </td>
+                    <td>
+                        <?php echo ModelPanier::MontantGlobal()?>
+                    </td>
+                </tr>
 
+<!--
                 echo "<tr><td colspan=\"2\"> </td>";
                 echo "<td colspan=\"2\">";
-                echo "Total : ".ModelPanier::MontantGlobal();
+                echo "Total : ". ModelPanier::MontantGlobal();
                 echo "</td></tr>";
 
                 echo "<tr><td colspan=\"4\">";
                 echo "<input type=\"submit\" value=\"Rafraichir\"/>";
                 echo "<input type=\"hidden\" name=\"action\" value=\"refresh\"/>";
 
-                echo "</td></tr>";
+                echo "</td></tr>";-->
+        <?php
             }
         }
         ?>
     </table>
 </form>
 </body>
+<script type="text/javascript">
+    function miseAJour (id, qte) {
+        var url = 'http://localhost/VenteVinPHP/index.php?action=readPanier&idVin='.concat(id);
+        var urlqte = '&nombreBouteile='.concat(qte);
+        //alert('passé'.concat(id));
+        window.location.replace(url.concat(urlqte));
+    }
+</script>
 </html>
 

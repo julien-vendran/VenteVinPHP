@@ -70,18 +70,24 @@ class ModelPanier {
     }
 
     public static function modifierQTeArticle($idVin,$nombreBouteille){
-        //Si le panierVin éxiste
-        if (ModelPanier::creationpanierVin() && !ModelPanier::estVerrouille())
-        {
+
+        //Si le panierVin existe
+        if (ModelPanier::creationpanierVin() && !ModelPanier::estVerrouille()) {
+            //Récupération du stock
+            $vin = ModelVin::select($idVin);
+            $stock = $vin->get('qteVin');
+
             //Si la quantité est positive on modifie sinon on supprime l'article
             if ($nombreBouteille > 0)
             {
-                //Recharche du produit dans le panierVin
+                //Recherche du produit dans le panierVin
                 $positionProduit = array_search($idVin,  $_SESSION['panierVin']['idVin']);
 
-                if ($positionProduit !== false)
-                {
-                    $_SESSION['panierVin']['nombreBouteille'][$positionProduit] = $nombreBouteille ;
+                if ($positionProduit !== false) {
+                    if ($nombreBouteille <= $stock)
+                        $_SESSION['panierVin']['nombreBouteille'][$positionProduit] = $nombreBouteille ;
+                    else
+                        $_SESSION['panierVin']['nombreBouteille'][$positionProduit] = $stock ;
                 }
             }
             else
