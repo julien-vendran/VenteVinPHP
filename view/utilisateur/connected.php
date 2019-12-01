@@ -1,2 +1,3 @@
-<?php
-echo '<h1>Vous êtes maintenant connecté ! </h1>';
+<div class = "center-align">
+    <h1>Rebonjour !</h1>
+</div>

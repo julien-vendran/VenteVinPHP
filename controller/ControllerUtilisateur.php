@@ -8,19 +8,12 @@ class ControllerUtilisateur {
     // 1 -> Utilisateur lambda
     //2 -> Viticulteurs
 
-    public static function createUser () {
-        $controller = 'utilisateur';
-        $view = 'create';
-        $pagetitle = 'Création utilisateur';
-        require File::build_path(array('view', 'view.php'));
-    }
-
     public static function createdUser () {
 
         $valuesUser = array(
             "idUtilisateur" => 0,
-            "loginUtilisateur" => $_POST['loginUtilisateur'],
-            "mdpUtilisateur" => Security::chiffrer($_POST['mdpUtilisateur']),
+            "loginUtilisateur" => $_POST['login'],
+            "mdpUtilisateur" => Security::chiffrer($_POST['mdp']),
             "nomUtilisateur" => $_POST['nomUtilisateur']
         );
         $ok = ModelUtilisateur::insert($valuesUser);
