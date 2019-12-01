@@ -81,7 +81,7 @@ DROP TABLE IF EXISTS `viticulteurs`;
 CREATE TABLE IF NOT EXISTS `viticulteurs` (
   `idViticulteur` int(11) NOT NULL AUTO_INCREMENT,
   `nomViticulteur` varchar(32) NOT NULL,
-  `prenomViticulteur` varchar(32) NOT NULL,
+  `loginViticulteur` varchar(32) NOT NULL,
   `idDomaine` int(11) NOT NULL,
   PRIMARY KEY (`idViticulteur`),
   KEY `idDomaine` (`idDomaine`),
@@ -104,7 +104,3 @@ ALTER TABLE `vins`
 ALTER TABLE `viticulteurs`
   ADD CONSTRAINT `fk_domaine_viticulteur` FOREIGN KEY (`idDomaine`) REFERENCES `domaines` (`idDomaine`);
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

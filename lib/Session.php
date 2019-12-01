@@ -16,4 +16,12 @@ class Session {
         session_destroy();   // destroy session data in storage
         setcookie(session_name(),'',time()-1); // deletes the session cookie containing the session ID
     }
+
+    public static function est_utilisateur () {
+        return (isset($_SESSION['rangDeLutilisateur']) && $_SESSION['rangDeLutilisateur'] == 1);
+    }
+
+    public static function est_viticuleur() { // Un viticulteur pourra proposer son vin en plus de ce que peut faire un utilisateur
+        return (isset($_SESSION['rangDeLutilisateur']) && $_SESSION['rangDeLutilisateur'] == 2);
+    }
 }

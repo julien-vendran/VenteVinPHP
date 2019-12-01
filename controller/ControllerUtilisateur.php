@@ -4,6 +4,9 @@
 */
 require_once File::build_path(array('model', 'ModelUtilisateur.php'));
 class ControllerUtilisateur {
+    //rangDeLutilisateur -> Pour les droits
+    // 1 -> Utilisateur lambda
+    //2 -> Viticulteurs
 
     public static function createUser () {
         $controller = 'utilisateur';
@@ -52,6 +55,7 @@ class ControllerUtilisateur {
         $exist = Security::checkMotDePasse($_POST['login'], Security::chiffrer($_POST['mdp']));
 
         if ($exist) { // On connecte l'utilisateur
+            ModelUtilisateur::attributionDesDroits($_POST['login']);
             $_SESSION['estConnecteAuServeur'] = true;
             $controller = 'utilisateur';
             $view = 'connected';

@@ -13,6 +13,38 @@ class ModelUtilisateur extends Model{
     private $mdpUtilisateur;
     private $nomUtilisateur;
 
+    /**
+     * @param $login (Login) est la login de l'utilisateur
+     * Pré requis : l'utilisateur existe,
+     * On teste si c'est un viticulteur, si c'est le cas, on modifie la session en conséquance (On lui attribue 2)
+     * Sinon, étant donné qu'il existe dans la table utilisateur, on lui laisse ces droits là (On lui attribue 1)
+     */
+    public static function attributionDesDroits($login) {
+        try {
+            $sql = 'SELECT * FROM `viticulteurs` WHERE loginViticulteur = :sql_login';
+            $sql_prep = Model::$pdo->prepare($sql);
+
+            $values = array(
+                "sql_login" => $login
+            );
+
+            $sql_prep->execute($values);
+
+            $sql_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelViticulteur');
+
+            $reponse = $sql_prep->fetchAll();
+
+            //On va se servir $_SESSION['rangDeLutilisateur'] savoir qui il est
+            if (  ! empty($reponse)) { // Si la réponse est vide
+                $_SESSION['rangDeLutilisateur'] = 2; //2 pour les viticulteurs
+            } else {// Si la requête prof renvoie une réponse
+                $_SESSION['rangDeLutilisateur'] = 1; // On défini 1 pour les utilisateurs
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
 
     public function get($nom_attribut) {
         if (property_exists($this, $nom_attribut))

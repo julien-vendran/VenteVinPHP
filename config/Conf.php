@@ -8,7 +8,7 @@ class Conf {
         'hostname' => 'localhost',
         'database' => 'ventevinphp',
         'login' => 'root',
-        'password' => 'root'
+        'password' => ''
     );
 
     static public function getLogin() {
@@ -33,5 +33,3 @@ class Conf {
     }
 
 }
-?>
-
