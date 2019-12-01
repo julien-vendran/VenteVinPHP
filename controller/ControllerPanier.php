@@ -27,4 +27,25 @@ class ControllerPanier {
             echo 'erreur';
         }
     }
+
+    public static function supprimerVinPanier () {
+        $id = $_GET['idVin'];
+        $v = ModelVin::select($id);
+        if( ! is_null($v) && $v)
+            $nomVin = $v->get('nomVin');
+
+        $fait = ModelPanier::supprimerArticle($id);
+
+        $tab = ModelVin::selectAll();
+
+        if ($fait) {
+            unset($_GET);
+            $controller = 'panier';
+            $view = 'supprime';
+            $pagetitle = 'Article supprimé ! ';
+            require_once File::build_path(array('view', 'view.php'));
+        } else {
+            echo 'erreur de suppression';
+        }
+    }
 }

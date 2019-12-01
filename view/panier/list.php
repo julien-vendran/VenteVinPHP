@@ -56,7 +56,7 @@
                             ?>
                         </td>
                         <td>
-
+                            <a href="?action=supprimerVinPanier&idVin=<?php echo $_SESSION['panierVin']['idVin'][$i]?>"><i class="red-text material-icons">close</i></a>
                         </td>
                     </tr>
 
@@ -70,7 +70,7 @@
                         Total :
                     </td>
                     <td>
-                        <?php echo ModelPanier::MontantGlobal()?>
+                        <?php echo ModelPanier::MontantGlobal()?> €
                     </td>
                 </tr>
 

@@ -64,9 +64,12 @@ class ModelPanier {
             $_SESSION['panierVin'] =  $tmp;
             //On efface notre panierVin temporaire
             unset($tmp);
+            return true;
         }
-        else
+        else {
             echo "Un problème est survenu veuillez contacter l'administrateur du site.";
+            return false;
+        }
     }
 
     public static function modifierQTeArticle($idVin,$nombreBouteille){
