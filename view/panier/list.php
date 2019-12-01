@@ -14,8 +14,8 @@
 </head>
 <body>
 
-<form method="post" action="list.php">
-    <table style="width: 400px">
+<form method="post" action="list.php" class = "container">
+    <table class = "centered responsive-table">
         <tr>
             <td colspan="4">Votre panier</td>
         </tr>

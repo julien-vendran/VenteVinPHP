@@ -25,7 +25,8 @@ class ModelPanier {
             $positionProduit = array_search($idVin,  $_SESSION['panierVin']['idVin']);
 
             if ($positionProduit !== false) {
-                $_SESSION['panierVin']['nombreBouteille'][$positionProduit] += $nombreBouteille ;
+                $nbvoulu = $_SESSION['panierVin']['nombreBouteille'][$positionProduit] + $nombreBouteille ;
+                ModelPanier::modifierQTeArticle($idVin, $nbvoulu);
             }
             else {
                 //Sinon on ajoute le produit
