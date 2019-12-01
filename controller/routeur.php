@@ -4,22 +4,24 @@ require_once File::build_path(array('controller','ControllerDomaine.php'));
 require_once File::build_path(array('controller','ControllerViticulteur.php'));
 require_once File::build_path(array('controller', 'ControllerUtilisateur.php'));
 require_once File::build_path(array('controller', 'ControllerPanier.php'));
+require_once File::build_path(array('lib', 'Session.php'));
 
-    /*if (Session::est_connecte()) {
+    if (Session::est_connecte()) {
         $action = 'accueil';
         $controller = 'accueil';
-        $view = 'accueilConnecte';
-        $pagetitle = 'Bienvenue ! ';
+        $view = 'accueil';
+        $pagetitle = "Accueil";
     } else {
         $action = 'accueil';
         $controller = 'accueil';
-        $view = 'accueilNonConnecte';
+        $view = 'nonConnecte';
         $pagetitle = 'Bienvenue ! ';
-    }*/
+    }
 
     if (!isset($_GET['action']) && !isset($_POST['action'])) {
         //require File::build_path(array('view','view.php'));
         $action = "accueil";
+        require_once File::build_path(array('view', 'view.php'));
     } else if (!isset($_POST['action'])){
         $action = $_GET['action'];
     } else {
@@ -48,9 +50,10 @@ require_once File::build_path(array('controller', 'ControllerPanier.php'));
         $view = 'error';
         $pagetitle = 'ERREUR';
         require File::build_path(array('view','view.php'));
-    } else {
+    }
+    /*else {
         $controller = 'accueil';
         $view = 'accueil';
         $pagetitle = "Accueil";
         require File::build_path(array('view','view.php'));
-    }
+    }*/

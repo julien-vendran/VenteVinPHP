@@ -34,6 +34,13 @@ class ControllerUtilisateur {
         require File::build_path(array('view', 'view.php'));
     }
 
+    public static function inscrireUser () {
+        $controller = 'utilisateur';
+        $view = 'inscription';
+        $pagetitle = 'Inscription';
+        require File::build_path(array('view', 'view.php'));
+    }
+
     public static function connectUser () {
         $controller = 'utilisateur';
         $view = 'connect';
@@ -59,10 +66,11 @@ class ControllerUtilisateur {
         }
     }
 
-    public static function inscrireUser () {
+    public static function deconnectUser() {
+        Session::deconnecte_Utilisateur();
         $controller = 'utilisateur';
-        $view = 'inscription';
-        $pagetitle = 'Inscription';
+        $view = 'deconnected';
+        $pagetitle = 'Deconnexion effectuée';
         require File::build_path(array('view', 'view.php'));
     }
 }
