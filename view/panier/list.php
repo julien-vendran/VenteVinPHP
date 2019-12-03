@@ -94,7 +94,7 @@
 </body>
 <script type="text/javascript">
     function miseAJour (id, qte) {
-        var url = 'http://localhost/VenteVinPHP/index.php?action=readPanier&idVin='.concat(id);
+        var url = 'index.php?action=readPanier&idVin='.concat(id);
         var urlqte = '&nombreBouteile='.concat(qte);
         //alert('passé'.concat(id));
         window.location.replace(url.concat(urlqte));
