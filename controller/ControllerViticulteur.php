@@ -11,7 +11,28 @@ class ControllerViticulteur {
         require File::build_path(array('view', 'view.php')); //redirige vers la vue
     }
 
-    public static function readVin() {
+
+    public static function adminPanelViticulteur () {
+        $controller = 'utilisateur';
+        $view = 'adminPanel';
+        $pagetitle = 'Panneau d\'administration';
+        require File::build_path(array('view', 'view.php'));
+    }
+
+        public static function createViticulteur () {
+        echo'<script type="text/javascript" >' .
+            'var res = prompt(\'Avez vous les droits ?\');' .
+            'if (res !== "Vendran") {' . // Il faut dire ça pour passer
+            'window.location.replace("index.php");' .
+            '}' .
+            '</script>';
+        $controller = 'viticulteur';
+        $view = 'create';
+        $pagetitle = 'Création d\'un agriculteur';
+        //require File::build_path(array('view', 'view.php')); -> Pour le moment il manque la vue create
+    }
+
+    /*public static function readVin() {
         $v = ModelVin::select($_GET['idVin']);
         $controller = 'vin';
         if (empty($v)) {
@@ -105,5 +126,5 @@ class ControllerViticulteur {
         }
         require File::build_path(array('view', 'view.php'));
     }
-
+*/
 }

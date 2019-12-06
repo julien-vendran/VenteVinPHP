@@ -17,6 +17,9 @@
                     echo '<li><a href="?action=connectUser">Se Connecter</a></li>';
                 else
                     echo '<li><a href="?action=deconnectUser">Se Deconnecter</a></li>';
+
+                if (Session::est_viticuleur())
+                    echo '<li><a href="?action=adminPanelViticulteur"></a></li>';
             ?>
         </ul>
     </div>
