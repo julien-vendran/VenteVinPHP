@@ -8,14 +8,10 @@
     }
 ?>
 
-<html lang="fr">
-<head>
-    <title>Votre panier</title>
-</head>
 <body>
 
-<form method="post" action="list.php">
-    <table style="width: 400px">
+<form method="post" id="panier" action="list.php">
+    <table>
         <tr>
             <td colspan="4">Votre panier</td>
         </tr>
