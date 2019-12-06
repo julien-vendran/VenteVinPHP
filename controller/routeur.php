@@ -12,11 +12,20 @@ require_once File::build_path(array('lib', 'Session.php'));
         $view = 'accueil';
         $pagetitle = "Accueil";
     } else {
-        $action = 'accueil';
-        $controller = 'accueil';
-        $view = 'nonConnecte';
-        $pagetitle = 'Bienvenue ! ';
+        if ( isset ($_COOKIE['estMajeur']) && $_COOKIE['estMajeur'] == true) {
+            $action = 'accueil';
+            $controller = 'utilisateur';
+            $view = 'connect';
+            $pagetitle = 'On s\'est déjà vu non ? ';
+        } else {
+            $notVisiteYet = true;
+            $action = 'accueil';
+            $controller = 'accueil';
+            $view = 'nonConnecte';
+            $pagetitle = 'Etes-vous majeur ? ';
+        }
     }
+
 
     if (!isset($_GET['action']) && !isset($_POST['action'])) {
         //require File::build_path(array('view','view.php'));

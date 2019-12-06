@@ -60,9 +60,9 @@ class ModelUtilisateur extends Model{
         return parent::select($primary_value);
     }
 
-    public static function insert($data) {
+    /*public static function insert($data) {
         return parent::insert($data);
-    }
+    }*/
 
     public static function update($data, $primary) {
         return parent::update($data, $primary);
