@@ -8,14 +8,10 @@
     }
 ?>
 
-<html lang="fr">
-<head>
-    <title>Votre panier</title>
-</head>
 <body>
 
-<form method="post" action="list.php" class = "container">
-    <table class = "centered responsive-table">
+<form method="post" id="panier" action="list.php">
+    <table>
         <tr>
             <td colspan="4">Votre panier</td>
         </tr>
@@ -94,7 +90,7 @@
 </body>
 <script type="text/javascript">
     function miseAJour (id, qte) {
-        var url = 'http://localhost/VenteVinPHP/index.php?action=readPanier&idVin='.concat(id);
+        var url = 'index.php?action=readPanier&idVin='.concat(id);
         var urlqte = '&nombreBouteile='.concat(qte);
         //alert('passé'.concat(id));
         window.location.replace(url.concat(urlqte));

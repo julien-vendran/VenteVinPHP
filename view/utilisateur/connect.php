@@ -1,3 +1,8 @@
+<?php
+    if ( ! isset($_COOKIE['estMajeur']))
+        setcookie("estMajeur", true, time() + (86400 * 15)); //86400 = 1 jour
+?>
+
 <div class="container">
     <h1>Bienvenue sur caveau-online</h1>
     <h4>Merci de vous connecter</h4>

@@ -38,7 +38,5 @@
     ?>
 
 </div>
-<?php
-    echo "<a id=\"create\" href = \"?action=createVin\">Créer une autre Vin</a>";
 
 
