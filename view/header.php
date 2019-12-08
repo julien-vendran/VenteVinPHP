@@ -8,7 +8,6 @@
             <?php
                 if (Session::est_Connecte()) {
                     echo '<li><a href="index.php">Accueil</a></li>';
-                    echo '<li><a href="?action=readAllDomaines">Domaines</a></li>';
                 }
             ?>
             <li><a href="?action=readAllVins">Boutique</a></li>
@@ -19,7 +18,10 @@
                     echo '<li><a href="?action=deconnectUser">Se Deconnecter</a></li>';
 
                 if (Session::est_viticuleur())
-                    echo '<li><a href="?action=adminPanelViticulteur"></a></li>';
+                    echo '<li><a href="?action=adminPanelViticulteur"></a>Panneau viticulteur</li>';
+
+                if (Session::est_administrateur())
+                    echo "<li><a href='?action=adminPanelAdministrateur'>Panneau administrateur</a></li>";
             ?>
         </ul>
     </div>

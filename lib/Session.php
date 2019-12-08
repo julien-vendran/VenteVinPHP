@@ -18,10 +18,14 @@ class Session {
     }
 
     public static function est_utilisateur () {
-        return (isset($_SESSION['rangDeLutilisateur']) && $_SESSION['rangDeLutilisateur'] == 1);
+        return (isset($_SESSION['rangDeLutilisateur']) && $_SESSION['rangDeLutilisateur'] == 1) || Session::est_administrateur();
     }
 
     public static function est_viticuleur() { // Un viticulteur pourra proposer son vin en plus de ce que peut faire un utilisateur
-        return (isset($_SESSION['rangDeLutilisateur']) && $_SESSION['rangDeLutilisateur'] == 2);
+        return (isset($_SESSION['rangDeLutilisateur']) && $_SESSION['rangDeLutilisateur'] == 2) || Session::est_administrateur();
+    }
+
+    public static function est_administrateur() {
+        return (isset($_SESSION['rangDeLutilisateur']) && $_SESSION['rangDeLutilisateur'] == 3);
     }
 }

@@ -21,7 +21,7 @@ class ModelUtilisateur extends Model{
      */
     public static function attributionDesDroits($login) {
         try {
-            $sql = 'SELECT * FROM `viticulteurs` WHERE loginViticulteur = :sql_login';
+            $sql = 'SELECT * FROM `Viticulteurs` WHERE loginViticulteur = :sql_login';
             $sql_prep = Model::$pdo->prepare($sql);
 
             $values = array(

@@ -29,30 +29,47 @@ class ControllerViticulteur {
         $controller = 'viticulteur';
         $view = 'create';
         $pagetitle = 'Création d\'un agriculteur';
-        //require File::build_path(array('view', 'view.php')); -> Pour le moment il manque la vue create
+        require File::build_path(array('view', 'view.php'));
     }
 
-    /*public static function readVin() {
-        $v = ModelVin::select($_GET['idVin']);
-        $controller = 'vin';
-        if (empty($v)) {
-            $view = 'error';
-            $pagetitle = 'ERREUR';
+    public static function createdViticulteur () {
+        require_once File::build_path(array('model', 'ModelUtilisateur.php'));
+        $valuesViticulteurs = array(
+            "idViticulteur" => 0,
+            "nomViticulteur" => $_POST['nomViticulteur'],
+            "prenomViticulteur" => $_POST['prenomViticulteur'],
+            "idDomaine" => 1
+        );
+        $okViti = ModelViticulteur::insert($valuesViticulteurs);
+        $valuesUtilisateurs = array(
+            "idUtilisateur" => 0,
+            "loginUtilisateur" => $_POST['loginViticulteur'],
+            "mdpUtilisateur" => Security::chiffrer($_POST['mdpViticulteur']),
+            "nomUtilisateur" => $_POST['nomViticulteur'] . " " . $_POST['prenomViticulteur'],
+        );
+        $okUti = ModelUtilisateur::insert($valuesUtilisateurs);
+
+        if ($okViti && $okUti) {
+            $controller = 'viticulteur';
+            $view = 'created';
+            $pagetitle = 'Ajouté';
+        } else if ($okViti) {
+            $controller = 'viticulteur';
+            $view = 'erreurUser';
+            $pagetitle = 'Erreur de création utilisateur';
+        } else if ($okUti) {
+            $controller = 'viticulteur';
+            $view = 'erreurAjoutTotal';
+            $pagetitle = 'Erreur de création utilisateur';
         } else {
-            $view = 'detail';
-            $pagetitle = 'Détail Vin';
+            $controller = 'viticulteur';
+            $view = 'erreurAjoutTotal';
+            $pagetitle = 'Erreur de création utilisateur';
         }
         require File::build_path(array('view', 'view.php'));
     }
 
-    public static function createVin() {
-        $controller = 'vin';
-        $view = 'create';
-        $pagetitle = 'Création Vin';
-        require File::build_path(array('view', 'view.php'));
-    }
-
-    public static function createdVin() {
+    /* public static function createdVin() {
         $valuesVin = array(
             "idVin" => $_GET['idVin'],
             "nomVin" => $_GET['nomVin'],

@@ -18,7 +18,7 @@ CREATE TABLE `vins` (
   `medailleVin` varchar(10) DEFAULT NULL,
   `prixVin` double NOT NULL,
   `qteVin` int(11) NOT NULL,
-  `imageVin` varchar(20) NOT NULL,
+  `imageVin` varchar(50) NOT NULL,
   `idDomaine` int(11) NOT NULL,
   PRIMARY KEY (`idVin`),
   KEY `idDomaine` (`idDomaine`),
