@@ -48,4 +48,8 @@ class ControllerPanier {
             echo 'erreur de suppression';
         }
     }
+
+    public static function payer(){
+
+    }
 }
