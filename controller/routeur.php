@@ -1,6 +1,5 @@
 <?php
 require_once File::build_path(array('controller','ControllerVin.php'));
-require_once File::build_path(array('controller','ControllerDomaine.php'));
 require_once File::build_path(array('controller','ControllerViticulteur.php'));
 require_once File::build_path(array('controller', 'ControllerUtilisateur.php'));
 require_once File::build_path(array('controller', 'ControllerPanier.php'));
@@ -39,15 +38,12 @@ require_once File::build_path(array('lib', 'Session.php'));
 
 
     $methods_Vin = get_class_methods('ControllerVin');
-    $methods_Domaine = get_class_methods('ControllerDomaine');
     $methods_Viticulteur = get_class_methods('ControllerViticulteur');
     $methods_Utilisateur = get_class_methods('ControllerUtilisateur');
     $methods_panier = get_class_methods('ControllerPanier');
 
     if (in_array($action, $methods_Vin))
         ControllerVin::$action();
-    else if (in_array($action, $methods_Domaine))
-        ControllerDomaine::$action();
     else if (in_array($action, $methods_Viticulteur))
         ControllerViticulteur::$action();
     else if (in_array($action, $methods_Utilisateur))
