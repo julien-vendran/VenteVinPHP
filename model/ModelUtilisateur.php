@@ -5,13 +5,21 @@ require_once File::build_path(array('model', 'Model.php'));
 class ModelUtilisateur extends Model{
     protected static $nomTable = 'utilisateurs';
     protected static $nomClasse = 'ModelUtilisateur';
-    protected static $primary = 'idUtilisateur';
+    protected static $primary = 'loginUtilisateur';
 
 
-    private $idUtilisateur;
     private $loginUtilisateur;
     private $mdpUtilisateur;
     private $nomUtilisateur;
+
+
+    public function __construct($log = NULL, $mdp = NULL, $nom = NULL) {
+        if (!is_null($log) && !is_null($mdp) && !is_null($nom)){
+            $this->loginUtilisateur = $log;
+            $this->mdpUtilisateur = $mdp;
+            $this->nomUtilisateur = $nom;
+        }
+    }
 
     /**
      * @param $login (Login) est la login de l'utilisateur

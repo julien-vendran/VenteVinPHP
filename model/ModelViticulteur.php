@@ -8,7 +8,16 @@
 
         private $idViticulteur;
         private $nomViticulteur;
-        private $prenomViticulteur;
+        private $loginViticulteur;
+
+
+        public function __construct($id= NULL, $nom = NULL, $login = NULL) {
+            if (!is_null($id) && !is_null($nom) && !is_null($login)){
+                $this->idViticulteur = $id;
+                $this->nomViticulteur = $nom;
+                $this->loginViticulteur = $login;
+            }
+        }
 
         public function get($nom_attribut) {
             if (property_exists($this, $nom_attribut))
