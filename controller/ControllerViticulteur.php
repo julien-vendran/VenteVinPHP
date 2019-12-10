@@ -13,8 +13,8 @@ class ControllerViticulteur {
 
 
     public static function adminPanelViticulteur () {
-        $controller = 'utilisateur';
-        $view = 'adminPanel';
+        $controller = 'viticulteur';
+        $view = 'panel';
         $pagetitle = 'Panneau d\'administration';
         require File::build_path(array('view', 'view.php'));
     }

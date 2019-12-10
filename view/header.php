@@ -18,7 +18,7 @@
                     echo '<li><a href="?action=deconnectUser">Se Deconnecter</a></li>';
 
                 if (Session::est_viticuleur())
-                    echo '<li><a href="?action=adminPanelViticulteur"></a>Panneau viticulteur</li>';
+                    echo '<li><a href="?action=adminPanelViticulteur">Panneau viticulteur</a></li>';
 
                 if (Session::est_administrateur())
                     echo "<li><a href='?action=adminPanelAdministrateur'>Panneau administrateur</a></li>";

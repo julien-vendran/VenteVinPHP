@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
     if (isset($_GET['idVin']) && isset($_GET['nombreBouteile'])) {
         ModelPanier::modifierQTeArticle($_GET['idVin'], $_GET['nombreBouteile']);
