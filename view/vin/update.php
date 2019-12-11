@@ -1,17 +1,35 @@
-<form method="get" action="">
+<form method="post" action="">
     <fieldset>
-        <legend> Modification </legend>
+        <legend> Modification du <?php echo htmlspecialchars($v->get("nomVin"))?> </legend>
         <p>
-            <label for="immat_id">Immatriculation</label> :
-            <input type="text" name="immat" id="immat_id" value="<?php echo htmlspecialchars($v->getImmatriculation()); ?>" readonly="true"/>
-            <label for="marque_id">Marque</label> :
-            <input type="text" name="marque" id="marque_id" value="<?php echo htmlspecialchars($v->getMarque()); ?>"/>
-            <label for="couleur_id">Couleur</label> :
-            <input type="text" name="couleur" id="couleur_id" value="<?php echo htmlspecialchars($v->getCouleur()); ?>"/>
+            <label for="nomVin_id">Nom</label> :
+            <input type="text" placeholder="Ex : Chardonnay Vionnier" name="nomVin" id="nomVin_id" class = "white-text" value = "<?php echo htmlspecialchars($v->get("nomVin"))?>" required/>
+
+            <label for="anneeVin_id">Année</label> :
+            <input type="text" placeholder="Ex : 2019" name="anneeVin" id="anneeVin_id" class = "white-text" value = "<?php echo htmlspecialchars($v->get("anneeVin"))?>" required/>
+
+            <label for="descriptionVin_id">Description</label> :
+            <input type="text" placeholder="Ex : Vin équilibré qui ..." name="descriptionVin" id="descriptionVin_id" class = "white-text" value = "<?php echo htmlspecialchars($v->get("descriptionVin"))?>" required/>
+
+            <label for="typeVin_id">Type</label> :
+            <input type="text" placeholder="Ex : Blanc" name="typeVin" id="typeVin_id" class = "white-text" value = "<?php echo htmlspecialchars($v->get("typeVin"))?>" required/>
+
+            <label for="medailleVin_id">Médaille</label> :
+            <input type="text" placeholder="Ex : Bronze" name="medailleVin" id="medailleVin_id" class = "white-text" value = "<?php echo htmlspecialchars($v->get("medailleVin"))?>"/>
+
+            <label for="prixVin_id">Prix</label> :
+            <input type="text" placeholder="Ex : 4.95€" name="prixVin" id="prixVin_id" required class = "white-text" value = "<?php echo htmlspecialchars($v->get("prixVin"))?>"/>
+
+            <label for="qteVin_id">Quantité en stock</label> :
+            <input type="text" placeholder="Ex : 50" name="qteVin" id="qteVin_id" class = "white-text" value = "<?php echo htmlspecialchars($v->get("qteVin"))?>" required/>
+
+            <label for="image_id">Image</label> :
+            <input type="text" placeholder="nom fichier image" name="image" id="image_id" class = "white-text" value = "<?php echo htmlspecialchars($v->get("imageVin"))?>" required/>
         </p>
-        <input type='hidden' name='action' value='updated'>
+        <input type='hidden' name='action' value='updatedVin'>
+        <input type='hidden' name='idVin' value='<?php echo $_GET['idVin']?>'>
         <p>
             <input type="submit" value="Envoyer" />
         </p>
-    </fieldset> 
+    </fieldset>
 </form>

@@ -34,24 +34,23 @@ class ControllerVin {
 
     public static function createdVin() {
         $valuesVin = array(
-            "nomVin" => $_GET['nomVin'],
-            "anneeVin" => $_GET['anneeVin'],
-            "descriptionVin" => $_GET['descriptionVin'],
-            "typeVin" => $_GET['typeVin'],
-            "medailleVin" => $_GET['medailleVin'],
-            "prixVin" => $_GET['prixVin'],
-            "qteVin" => $_GET['qteVin'],
-            "imageVin" => "./view/images/" . $_GET['image'],
+            "nomVin" => $_POST['nomVin'],
+            "anneeVin" => $_POST['anneeVin'],
+            "descriptionVin" => $_POST['descriptionVin'],
+            "typeVin" => $_POST['typeVin'],
+            "medailleVin" => $_POST['medailleVin'],
+            "prixVin" => $_POST['prixVin'],
+            "qteVin" => $_POST['qteVin'],
+            "imageVin" => "./view/images/" . $_POST['image'],
         );
         $ok = ModelVin::insert($valuesVin);
         $tab = ModelVin::selectAll(); //On va s'en servir dans les vues pour appeler la liste après insertion
+        $controller = 'vin';
         if (!$ok) {
-            $controller = 'vin';
             $view = 'error';
             $pagetitle = 'ERREUR';
         } else {
-            $controller = 'vin';
-            $view = 'created';
+            $view = 'create';
             $pagetitle = 'Vin Crée';
         }
         require File::build_path(array('view', 'view.php'));
@@ -82,14 +81,16 @@ class ControllerVin {
     }
 
     public static function updatedVin(){
-        $idVin = $_GET['idVin'];
+        $idVin = $_POST['idVin'];
         $values = array(
-            "nomVin" => $_GET['nomVin'],
-            "anneeVin" => $_GET['anneeVin'],
-            "descriptionVin" => $_GET['descriptionVin'],
-            "typeVin" => $_GET['typeVin'],
-            "medailleVin" => $_GET['medailleVin'],
-            "prixVin" => $_GET['prixVin'],
+            "nomVin" => $_POST['nomVin'],
+            "anneeVin" => $_POST['anneeVin'],
+            "descriptionVin" => $_POST['descriptionVin'],
+            "typeVin" => $_POST['typeVin'],
+            "medailleVin" => $_POST['medailleVin'],
+            "prixVin" => $_POST['prixVin'],
+            "qteVin" => $_POST['qteVin'],
+            "imageVin" => $_POST['image'],
         );
         $ok = ModelVin::update($values, $idVin);
         $tab_v = ModelVin::selectAll();
