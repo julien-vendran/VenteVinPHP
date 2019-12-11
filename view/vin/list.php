@@ -10,7 +10,7 @@
         if ($nbBouteille > 0) {
             /*ajouterArticle($idVin, $nombreBouteille,$prixVin) - - $_POST['idVin'], $_POST['qteVin'], $_POST['prixVin']*/
             ?>
-            <div class="col s4 m2"> <!-- c dent une boucle-->
+            <div class="col s4 m2">
                 <div class="card sizecard">
                     <div class="card-image sizeimg">
                         <img src="<?php echo $imgVin ?>">
@@ -37,6 +37,26 @@
             </div>
 
             <?php
+        } else { ?>
+            <div class="col s4 m2 opacite08">
+                <div class="card sizecard">
+                    <div class="card-image sizeimg">
+                        <img src="<?php echo $imgVin ?>">
+                    </div>
+                    <div class="card-content ">
+                        <span class="black-text card-title"><?php echo $nomVin ?></span>
+                        <p class="black-text"> <?php echo $prixVin ?>€ / bouteille</p>
+                            <span class = "red-text">Victime de son succès</span>
+                            <button class="btn-floating btn-large halfway-fab waves-effect waves-light red">
+                                <i class="material-icons">
+                                    close
+                                </i>
+                            </button>
+                    </div>
+                </div>
+            </div>
+
+    <?php
         }
     }
     ?>
