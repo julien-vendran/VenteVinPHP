@@ -42,7 +42,6 @@ class ControllerVin {
             "prixVin" => $_GET['prixVin'],
             "qteVin" => $_GET['qteVin'],
             "imageVin" => "./view/images/" . $_GET['image'],
-            "idDomaine" => $_GET['idDomaine'],
         );
         $ok = ModelVin::insert($valuesVin);
         $tab = ModelVin::selectAll(); //On va s'en servir dans les vues pour appeler la liste après insertion
@@ -91,7 +90,6 @@ class ControllerVin {
             "typeVin" => $_GET['typeVin'],
             "medailleVin" => $_GET['medailleVin'],
             "prixVin" => $_GET['prixVin'],
-            "idDomaine" => $_GET['idDomaine']
         );
         $ok = ModelVin::update($values, $idVin);
         $tab_v = ModelVin::selectAll();

@@ -26,9 +26,6 @@
 
             <label for="image_id">Image</label> :
             <input type="text" placeholder="nom fichier image" name="image" id="image_id" required/>
-
-            <label for="idDomaine_id">Domaine</label> :
-            <input type="text" placeholder="Ex : Cave Coopérative" name="idDomaine" id="idDomaine_id" required/>
         </p>
         <input type='hidden' name='action' value='createdVin'>
         <p>
