@@ -10,52 +10,59 @@ class ControllerUtilisateur {
 
     public static function createdUser () { // Equivaut à UtilisateurInscrit
         if ($_POST["mdp"] == $_POST["mdpvalide"]) {
-            if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
-                $valuesUser = array(
-                    "loginUtilisateur" => $_POST['login'],
-                    "mdpUtilisateur" => Security::chiffrer($_POST['mdp']),
-                    "nomUtilisateur" => $_POST['nomUtilisateur'],
-                    "emailUtilisateur" => $_POST['mail'],
-                    "nonce" => Security::genrateRandomHex(),
-                );
-                $ok = ModelUtilisateur::insert($valuesUser);
-                $tab = ModelUtilisateur::selectAll(); //On va s'en servir dans les vues pour appeler la liste après insertion
-                if (!$ok) {
-                    $controller = 'utilisateur';
-                    $view = 'error';
-                    $pagetitle = 'ERREUR';
+            $loginused = ModelUtilisateur::select($_POST['login']);
+            if (is_null($loginused)) {
+                if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
+                    $valuesUser = array(
+                        "loginUtilisateur" => $_POST['login'],
+                        "mdpUtilisateur" => Security::chiffrer($_POST['mdp']),
+                        "nomUtilisateur" => $_POST['nomUtilisateur'],
+                        "emailUtilisateur" => $_POST['mail'],
+                        "nonce" => Security::genrateRandomHex(),
+                    );
+                    $ok = ModelUtilisateur::insert($valuesUser);
+                    $tab = ModelUtilisateur::selectAll(); //On va s'en servir dans les vues pour appeler la liste après insertion
+                    if (!$ok) {
+                        $controller = 'utilisateur';
+                        $view = 'error';
+                        $pagetitle = 'ERREUR';
+                    } else {
+                        $controller = 'utilisateur';
+                        $view = 'created';
+                        $pagetitle = 'Utilisateur Crée';
+                        //On envoie le mail à l'utilisateur
+                        $lien = "http://localhost/VenteVinPHP/index.php?action=validate&login=" . urlencode($_POST['login']) . "&nonce=" . urlencode($valuesUser['nonce']);
+                        $email = "<h1>" .
+                            "Votre inscription à bien été retenue" .
+                            "</h1>" .
+                            "<p>" .
+                            "Rendez vous à l'adresse ci-jointe pour valider votre inscritpion" .
+                            "</p>" .
+                            "<a href = ". $lien .">" .
+                            "Valider votre inscription" .
+                            "</a>";
+                        mail("julienletest@yopmail.com", "Validation inscription à Caveau-Online", $email);
+                    }
                 } else {
+                    $erreurRencontree = "mail";
                     $controller = 'utilisateur';
-                    $view = 'created';
-                    $pagetitle = 'Utilisateur Crée';
-                    //On envoie le mail à l'utilisateur
-                    $lien = "http://localhost/VenteVinPHP/index.php?action=validate&login=" . urlencode($_POST['login']) . "&nonce=" . urlencode($valuesUser['nonce']);
-                    $email = "<h1>" .
-                        "Votre inscription à bien été retenue" .
-                        "</h1>" .
-                        "<p>" .
-                        "Rendez vous à l'adresse ci-jointe pour valider votre inscritpion" .
-                        "</p>" .
-                        "<a href = ". $lien .">" .
-                        "Valider votre inscription" .
-                        "</a>";
-                    mail("julienletest@yopmail.com", "Validation inscription à Caveau-Online", $email);
+                    $view = 'inscription';
+                    $pagetitle = 'Inscription';
                 }
             } else {
-                $erreurRencontree = "mail";
+                $erreurRencontree = "login";
                 $controller = 'utilisateur';
                 $view = 'inscription';
                 $pagetitle = 'Inscription';
             }
-            require File::build_path(array('view', 'view.php'));
         } else {
             echo 'par la';
             $erreurRencontree = "mdp";
             $controller = 'utilisateur';
             $view = 'inscription';
             $pagetitle = 'Inscription';
-            require File::build_path(array('view', 'view.php'));
         }
+        require File::build_path(array('view', 'view.php'));
     }
 
     public static function validate() {

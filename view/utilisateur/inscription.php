@@ -26,6 +26,10 @@
             <div>
                 <p>Votre adresse mail n'a pas un format valide</p>
             </div>
+    <?php } else if (isset($erreurRencontree) && $erreurRencontree == "login") {  ?>
+    <div>
+        <p>Le login que vous avez choisi est déjà utilisé</p>
+    </div>
     <?php } ?>
 
     <form method = "post" action = "?action=createdUser">
