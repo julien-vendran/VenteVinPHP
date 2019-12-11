@@ -8,24 +8,73 @@ class ControllerUtilisateur {
     // 1 -> Utilisateur lambda
     //2 -> Viticulteurs
 
-    public static function createdUser () {
-
-        $valuesUser = array(
-            "idUtilisateur" => 0,
-            "loginUtilisateur" => $_POST['login'],
-            "mdpUtilisateur" => Security::chiffrer($_POST['mdp']),
-            "nomUtilisateur" => $_POST['nomUtilisateur']
-        );
-        $ok = ModelUtilisateur::insert($valuesUser);
-        $tab = ModelUtilisateur::selectAll(); //On va s'en servir dans les vues pour appeler la liste après insertion
-        if (!$ok) {
+    public static function createdUser () { // Equivaut à UtilisateurInscrit
+        if ($_POST["mdp"] == $_POST["mdpvalide"]) {
+            if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
+                $valuesUser = array(
+                    "loginUtilisateur" => $_POST['login'],
+                    "mdpUtilisateur" => Security::chiffrer($_POST['mdp']),
+                    "nomUtilisateur" => $_POST['nomUtilisateur'],
+                    "emailUtilisateur" => $_POST['mail'],
+                    "nonce" => Security::genrateRandomHex(),
+                );
+                $ok = ModelUtilisateur::insert($valuesUser);
+                $tab = ModelUtilisateur::selectAll(); //On va s'en servir dans les vues pour appeler la liste après insertion
+                if (!$ok) {
+                    $controller = 'utilisateur';
+                    $view = 'error';
+                    $pagetitle = 'ERREUR';
+                } else {
+                    $controller = 'utilisateur';
+                    $view = 'created';
+                    $pagetitle = 'Utilisateur Crée';
+                    //On envoie le mail à l'utilisateur
+                    $lien = "http://localhost/VenteVinPHP/index.php?action=validate&login=" . urlencode($_POST['login']) . "&nonce=" . urlencode($valuesUser['nonce']);
+                    $email = "<h1>" .
+                        "Votre inscription à bien été retenue" .
+                        "</h1>" .
+                        "<p>" .
+                        "Rendez vous à l'adresse ci-jointe pour valider votre inscritpion" .
+                        "</p>" .
+                        "<a href = ". $lien .">" .
+                        "Valider votre inscription" .
+                        "</a>";
+                    mail("julienletest@yopmail.com", "Validation inscription à Caveau-Online", $email);
+                }
+            } else {
+                $erreurRencontree = "mail";
+                $controller = 'utilisateur';
+                $view = 'inscription';
+                $pagetitle = 'Inscription';
+            }
+            require File::build_path(array('view', 'view.php'));
+        } else {
+            echo 'par la';
+            $erreurRencontree = "mdp";
             $controller = 'utilisateur';
-            $view = 'error';
-            $pagetitle = 'ERREUR';
+            $view = 'inscription';
+            $pagetitle = 'Inscription';
+            require File::build_path(array('view', 'view.php'));
+        }
+    }
+
+    public static function validate() {
+        $login = $_GET['login'];
+        $nonce = $_GET['nonce'];
+        $user = ModelUtilisateur::select($login);
+        $nonceBD = $user->get('nonce');
+        if ($nonce == $nonceBD) {
+            $data = array(
+                "nonce" => NULL,
+            );
+            ModelUtilisateur::update($data, $login);
+            $controller = 'utilisateur';
+            $view = 'inscriptionValidee';
+            $pagetitle = 'Inscription Validée ! ';
         } else {
             $controller = 'utilisateur';
-            $view = 'created';
-            $pagetitle = 'Utilisateur Crée';
+            $view = 'inscriptionNonValidee';
+            $pagetitle = 'Inscription Validée ! ';
         }
         require File::build_path(array('view', 'view.php'));
     }
@@ -46,7 +95,8 @@ class ControllerUtilisateur {
 
     public static function connectedUser() {
         $exist = Security::checkMotDePasse($_POST['login'], Security::chiffrer($_POST['mdp']));
-
+        $user = ModelUtilisateur::select($_POST['login']);
+        $once = $user->get("nonce");
         if ($_POST['login'] === "juju" && $_POST['mdp'] === "123") {
             $_SESSION['rangDeLutilisateur'] = 3;
             $_SESSION['estConnecteAuServeur'] = true;
@@ -55,18 +105,26 @@ class ControllerUtilisateur {
             $pagetitle = 'Bienvenue !';
             require File::build_path(array('view', 'view.php'));
         } else if ($exist) { // On connecte l'utilisateur
-            ModelUtilisateur::attributionDesDroits($_POST['login']);
-            $_SESSION['estConnecteAuServeur'] = true;
-            $controller = 'utilisateur';
-            $view = 'connected';
-            $pagetitle = 'Bienvenue !';
+            if ( $once == NULL) {
+                ModelUtilisateur::attributionDesDroits($_POST['login']);
+                $_SESSION['estConnecteAuServeur'] = true;
+                $controller = 'utilisateur';
+                $view = 'connected';
+                $pagetitle = 'Bienvenue !';
+            } else {
+                $erreurRencontree = "nonce";
+                $controller = 'utilisateur';
+                $view = 'connect';
+                $pagetitle = 'Se connecter';
+            }
             require File::build_path(array('view', 'view.php'));
         } else {
             $_SESSION['estConnecteAuServeur'] = false;
-            echo '<script>' .
-                    'alert("Erreur de mot de passe ou de connexion");' .
-                    'window.location.replace("index.php?action=connectUser");' .
-                '</script>';
+            $erreurRencontree = "mdp";
+            $controller = 'utilisateur';
+            $view = 'connect';
+            $pagetitle = 'Se connecter';
+            require File::build_path(array('view', 'view.php'));
         }
     }
 

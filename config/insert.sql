@@ -7,6 +7,8 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `loginUtilisateur` varchar(32) NOT NULL,
   `mdpUtilisateur` varchar(64) NOT NULL,
   `nomUtilisateur` varchar(32) NOT NULL,
+  `nonce` VARCHAR(32) NOT NULL ,
+  `emailUtilisateur` VARCHAR(256) NOT NULL,
   PRIMARY KEY (`loginUtilisateur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
