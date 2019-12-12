@@ -22,6 +22,7 @@
             <td>Prix</td>
             <td>Quantité</td>
             <td>Modifier</td>
+            <td>Supprimer</td>
         </tr>
         </thead>
         <tbody>
@@ -44,6 +45,7 @@
                 <td><?php echo htmlspecialchars($vin->get('prixVin'));?></td>
                 <td><?php echo htmlspecialchars($vin->get('qteVin'));?></td>
                 <td><a href="?action=updateVin&idVin=<?php echo $id?>">Modifier</a></td>
+                <td><a href="?action=deletedVin&idVin=<?php echo $id?>"><i class="material-icons">close</i></a></td>
             </tr>
         <?php
             }
