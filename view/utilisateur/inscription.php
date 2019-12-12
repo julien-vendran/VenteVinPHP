@@ -13,7 +13,7 @@
         $nom = "";
 ?>
 
-<div class="container connexion">
+<div class="container">
     <h1>Inscription</h1>
 
     <?php

@@ -26,7 +26,6 @@
 
 footer{
 	background-color: rgb(124,34,45);
-	margin-top: 25px;
 	height: 8vh;
 	display:flex;
 	color: white;
@@ -62,7 +61,7 @@ html{
 	color:#f5f5f5;
 }
 
-.container{
+.container_parralax{
 	height: 500px;
 	display: flex;
 	flex-direction: column;
@@ -70,13 +69,8 @@ html{
 	justify-content: center;
 }
 
-.container>p{
+.container_parralax>p{
 	font-size: 2.8em;
-}
-
-.connexion{
-	height: auto;
-	display: block;
 }
 
 .btn, .btn-large, .btn-small{

@@ -1,7 +1,7 @@
 <div class="parallax-container">
     <div class="parallax"><img src="./view/images/cave.png"></div>
 </div>
-<div class="container">
+<div class="container container_parralax">
     <h1>Bienvenue sur caveau-online.fr</h1>
     <p>
         Trouver un bon vin peut parfois être difficile. <br>
@@ -12,7 +12,7 @@
     <div class="parallax"><img src="./view/images/cave2.jpg"></div>
 </div>
 
-<div class="container">
+<div class="container container_parralax">
     <h1>Une large sélection de vins</h1>
     <p>Venez découvrir notre <a href="?action=readAllVins">boutique</a>, vous y trouverez un large choix pour tous les prix et toutes les occasions !</p>
 </div>
