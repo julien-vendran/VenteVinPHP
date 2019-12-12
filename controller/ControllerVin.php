@@ -33,6 +33,9 @@ class ControllerVin {
     }
 
     public static function createdVin() {
+        require_once File::build_path(array('model', 'ModelViticulteur.php'));
+        $user = ModelViticulteur::select($_SESSION['login']);
+        $id = $user->get('idViticulteur');
         $valuesVin = array(
             "nomVin" => $_POST['nomVin'],
             "anneeVin" => $_POST['anneeVin'],
@@ -42,6 +45,7 @@ class ControllerVin {
             "prixVin" => $_POST['prixVin'],
             "qteVin" => $_POST['qteVin'],
             "imageVin" => "./view/images/" . $_POST['image'],
+            "idViticulteur" => $id,
         );
         $ok = ModelVin::insert($valuesVin);
         $tab = ModelVin::selectAll(); //On va s'en servir dans les vues pour appeler la liste après insertion
@@ -91,6 +95,7 @@ class ControllerVin {
             "prixVin" => $_POST['prixVin'],
             "qteVin" => $_POST['qteVin'],
             "imageVin" => $_POST['image'],
+            "idViti"
         );
         $ok = ModelVin::update($values, $idVin);
         $tab_v = ModelVin::selectAll();

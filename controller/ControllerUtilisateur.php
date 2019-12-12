@@ -105,6 +105,7 @@ class ControllerUtilisateur {
         if ($_POST['login'] === "juju" && $_POST['mdp'] === "123") {
             $_SESSION['rangDeLutilisateur'] = 3;
             $_SESSION['estConnecteAuServeur'] = true;
+            $_SESSION['login'] = $_POST['login'];
             $controller = 'utilisateur';
             $view = 'connected';
             $pagetitle = 'Bienvenue !';

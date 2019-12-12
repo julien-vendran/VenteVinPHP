@@ -4,7 +4,7 @@
     class ModelViticulteur extends Model {
         protected static $nomTable = 'viticulteurs';
         protected static $nomClasse = 'ModelViticulteur';
-        protected static $primary = 'idViticulteur';
+        protected static $primary = 'loginViticulteur';
 
         private $idViticulteur;
         private $nomViticulteur;

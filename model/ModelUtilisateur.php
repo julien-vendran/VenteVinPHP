@@ -53,7 +53,33 @@ class ModelUtilisateur extends Model{
                 $_SESSION['rangDeLutilisateur'] = 1; // On défini 1 pour les utilisateurs
             }
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            if (Conf::getDebug())
+                echo $e->getMessage();
+        }
+    }
+
+    public static function selectAllVinByIdViticulteur ($id) {
+        try {
+            $sql = 'SELECT * FROM `vins` WHERE `idViticulteur` = :sql_id';
+            $sql_prep = Model::$pdo->prepare($sql);
+
+            $values = array(
+                "sql_id" => $id
+            );
+
+            $sql_prep->execute($values);
+
+            $sql_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelVin');
+
+            $reponse = $sql_prep->fetchAll();
+            if ( ! empty($reponse))
+                return $reponse;
+            else
+                return array();
+        } catch (PDOException $e) {
+            if (Conf::getDebug())
+                echo $e->getMessage();
+            return null;
         }
     }
 

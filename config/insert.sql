@@ -80,42 +80,6 @@ CREATE TABLE `utilisateurs` (
 INSERT INTO `utilisateurs` (`loginUtilisateur`, `mdpUtilisateur`, `nomUtilisateur`, `nonce`, `emailUtilisateur`) VALUES
 ('nico', '1adb2719d9c1d8d83c3bbfa821b279f07e7e876b0598f5df1659f0d639dd2b3a', 'Nicolas', '', 'nicolaspicachou@hotmail.fr');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `vins`
---
-
-CREATE TABLE `vins` (
-  `idVin` int(11) NOT NULL,
-  `nomVin` varchar(32) NOT NULL,
-  `anneeVin` year(4) NOT NULL,
-  `descriptionVin` text NOT NULL,
-  `typeVin` varchar(15) NOT NULL,
-  `medailleVin` varchar(10) DEFAULT NULL,
-  `prixVin` double NOT NULL,
-  `qteVin` int(11) NOT NULL,
-  `imageVin` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `vins`
---
-
-INSERT INTO `vins` (`idVin`, `nomVin`, `anneeVin`, `descriptionVin`, `typeVin`, `medailleVin`, `prixVin`, `qteVin`, `imageVin`) VALUES
-(1, 'Viognier Chardonnay', 2018, 'Blanc sec', 'Blanc', '', 5.95, 79, './view/images/vmvChardo2018'),
-(2, 'Sira', 2015, 'Bon avec la viande', 'Rouge', 'Or', 6, 234, './view/images/gig2011'),
-(3, 'SO4', 2018, 'Bon tout le temps', 'Blanc', 'Argent', 18, 59, './view/images/vmv18secretdame'),
-(4, 'SO4', 2018, 'Bon tout le temps', 'Blanc', 'Argent', 18, 60, './view/images/vmv18secretdame'),
-(5, 'SO4', 2018, 'Bon tout le temps', 'Blanc', 'Argent', 18, 60, './view/images/vmv18secretdame'),
-(6, 'SO4', 2018, 'Bon tout le temps', 'Blanc', 'Argent', 18, 60, './view/images/vmv18secretdame'),
-(7, 'SO4', 2018, 'Bon tout le temps', 'Blanc', 'Argent', 18, 60, './view/images/vmv18secretdame'),
-(8, 'SO4', 2018, 'Bon tout le temps', 'Blanc', 'Argent', 18, 60, './view/images/vmv18secretdame'),
-(9, 'SO4', 2018, 'Bon tout le temps', 'Blanc', 'Argent', 18, 60, './view/images/vmv18secretdame'),
-(10, 'SO4', 2018, 'Bon tout le temps', 'Blanc', 'Argent', 18, 60, './view/images/vmv18secretdame');
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `viticulteurs`
 --
@@ -125,6 +89,46 @@ CREATE TABLE `viticulteurs` (
   `nomViticulteur` varchar(32) NOT NULL,
   `loginViticulteur` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `viticulteurs` (`idViticulteur`, `nomViticulteur`, `loginViticulteur`) VALUES ('1', 'Eric Vendran', 'vendrane');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vins`
+--
+
+CREATE TABLE `vins` (
+                        `idVin` int(11) NOT NULL,
+                        `nomVin` varchar(32) NOT NULL,
+                        `anneeVin` year(4) NOT NULL,
+                        `descriptionVin` text NOT NULL,
+                        `typeVin` varchar(15) NOT NULL,
+                        `medailleVin` varchar(10) DEFAULT NULL,
+                        `prixVin` double NOT NULL,
+                        `qteVin` int(11) NOT NULL,
+                        `imageVin` varchar(40) NOT NULL,
+                        `idViticulteur` INT NOT NULL ,
+                        INDEX `fk_Viticulteur` (`idViticulteur`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `vins`
+--
+
+INSERT INTO `vins` (`idVin`, `nomVin`, `anneeVin`, `descriptionVin`, `typeVin`, `medailleVin`, `prixVin`, `qteVin`, `imageVin`, `idViticulteur`) VALUES
+(1, 'Viognier Chardonnay', 2018, 'Blanc sec', 'Blanc', '', 5.95, 79, './view/images/vmvChardo2018', 1),
+(2, 'Sira', 2015, 'Bon avec la viande', 'Rouge', 'Or', 6, 234, './view/images/gig2011', 1),
+(3, 'SO4', 2018, 'Bon tout le temps', 'Blanc', 'Argent', 18, 59, './view/images/vmv18secretdame', 1),
+(4, 'SO4', 2018, 'Bon tout le temps', 'Blanc', 'Argent', 18, 60, './view/images/vmv18secretdame', 1),
+(5, 'SO4', 2018, 'Bon tout le temps', 'Blanc', 'Argent', 18, 60, './view/images/vmv18secretdame', 1),
+(6, 'SO4', 2018, 'Bon tout le temps', 'Blanc', 'Argent', 18, 60, './view/images/vmv18secretdame', 1),
+(7, 'SO4', 2018, 'Bon tout le temps', 'Blanc', 'Argent', 18, 60, './view/images/vmv18secretdame', 1),
+(8, 'SO4', 2018, 'Bon tout le temps', 'Blanc', 'Argent', 18, 60, './view/images/vmv18secretdame', 1),
+(9, 'SO4', 2018, 'Bon tout le temps', 'Blanc', 'Argent', 18, 60, './view/images/vmv18secretdame', 1),
+(10, 'SO4', 2018, 'Bon tout le temps', 'Blanc', 'Argent', 18, 60, './view/images/vmv18secretdame', 1);
+
+-- --------------------------------------------------------
 
 --
 -- Indexes for dumped tables

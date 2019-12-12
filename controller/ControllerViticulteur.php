@@ -13,6 +13,9 @@ class ControllerViticulteur {
 
 
     public static function adminPanelViticulteur () {
+        $user = ModelViticulteur::select($_SESSION['login']);
+        $id = $user->get('idViticulteur');
+        $tab = ModelUtilisateur::selectAllVinByIdViticulteur($id);
         $controller = 'viticulteur';
         $view = 'panel';
         $pagetitle = 'Panneau d\'administration';
