@@ -156,8 +156,7 @@ class ControllerUtilisateur {
 
         $loginUtilisateur = $user->get('loginUtilisateur');
         $nomUtilisateur = $user->get('nomUtilisateur');
-
-
+        $emailUtilisateur = $user->get('emailUtilisateur');
 
 
         $controller = 'utilisateur';

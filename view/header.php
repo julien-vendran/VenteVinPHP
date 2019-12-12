@@ -16,7 +16,7 @@
                     echo '<li><a href="?action=connectUser">Se Connecter</a></li>';
                 else {
                     echo '<li><a href="?action=deconnectUser">Se Deconnecter</a></li>';
-                    echo '<li><a href="?action=detail"><i class="material-icons">account_circle</i></a>';
+                    echo '<li><a href="?action=detailUser"><i class="material-icons">account_circle</i></a>';
                 }
 
                 if (Session::est_viticuleur())
