@@ -150,4 +150,19 @@ class ControllerUtilisateur {
         $pagetitle = 'Administrateur';
         require File::build_path(array('view', 'view.php'));
     }
+
+    public static function detailUser(){
+        $user = ModelUtilisateur::select($_SESSION['login']);
+
+        $loginUtilisateur = $user->get('loginUtilisateur');
+        $nomUtilisateur = $user->get('nomUtilisateur');
+
+
+
+
+        $controller = 'utilisateur';
+        $view = 'detail';
+        $pagetitle = 'Profil';
+        require File::build_path(array('view', 'view.php'));
+    }
 }

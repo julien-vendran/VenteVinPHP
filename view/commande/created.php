@@ -1,1 +1,1 @@
-<h1> Commande enregistrer !</h1>
+<h1> Commande enregistrée </h1>

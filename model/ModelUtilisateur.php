@@ -11,13 +11,17 @@ class ModelUtilisateur extends Model{
     private $loginUtilisateur;
     private $mdpUtilisateur;
     private $nomUtilisateur;
+    private $emailUtilisateur;
+    private $nonce;
 
 
-    public function __construct($log = NULL, $mdp = NULL, $nom = NULL) {
-        if (!is_null($log) && !is_null($mdp) && !is_null($nom)){
+    public function __construct($log = NULL, $mdp = NULL, $nom = NULL, $email = NULL, $n = NULL) {
+        if (!is_null($log) && !is_null($mdp) && !is_null($nom) && !is_null($email) && !is_null($n)){
             $this->loginUtilisateur = $log;
             $this->mdpUtilisateur = $mdp;
             $this->nomUtilisateur = $nom;
+            $this->emailUtilisateur = $email;
+            $this ->nonce = $n;
         }
     }
 

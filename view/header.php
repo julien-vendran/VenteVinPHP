@@ -14,8 +14,10 @@
             <?php
                 if (!Session::est_Connecte())
                     echo '<li><a href="?action=connectUser">Se Connecter</a></li>';
-                else
+                else {
                     echo '<li><a href="?action=deconnectUser">Se Deconnecter</a></li>';
+                    echo '<li><a href="?action=detail"><i class="material-icons">account_circle</i></a>';
+                }
 
                 if (Session::est_viticuleur())
                     echo '<li><a href="?action=adminPanelViticulteur">Panneau viticulteur</a></li>';
