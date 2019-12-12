@@ -20,18 +20,21 @@
 	margin:auto;
 }
 
+#menu>ul>li *{
+	font-size: 32px;
+}
+
 footer{
 	background-color: rgb(124,34,45);
-	height:8vh;
+	height: 8vh;
 	display:flex;
 	color: white;
 }
 
 footer div{
 	margin:auto;
+	font-size: 2em;
 }
-
-/* Materialize sticky footer */
 
 body{
     display: flex;
@@ -41,6 +44,11 @@ body{
 
 main{
 	flex: 1 0 auto;
+}
+
+.container a{
+	font-weight: 600;
+	color: #a02c39;
 }
 
 .parallax-container .parallax img{
@@ -55,13 +63,19 @@ html{
 
 .container{
 	height: 500px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.container>p{
+	font-size: 2.8em;
 }
 
 .btn, .btn-large, .btn-small{
 	background-color: rgb(124,34,45) !important;
 }
-
-/* Fin sticky footer */
 
 /*List de vin*/
 .sizeimg{

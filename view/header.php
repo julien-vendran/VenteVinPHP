@@ -13,9 +13,9 @@
             <li><a href="?action=readAllVins">Boutique</a></li>
             <?php
                 if (!Session::est_Connecte())
-                    echo '<li><a href="?action=connectUser">Se Connecter</a></li>';
+                    echo '<li><a href="?action=connectUser">Connexion</a></li>';
                 else {
-                    echo '<li><a href="?action=deconnectUser">Se Deconnecter</a></li>';
+                    echo '<li><a href="?action=deconnectUser">Deconnexion</a></li>';
                     echo '<li><a href="?action=detailUser"><i class="material-icons">account_circle</i></a>';
                 }
 
