@@ -13,10 +13,23 @@ class ControllerCommande{
     }
 
     public static function readAllCommande () {
-        $tab = ModelCommande::selectAll();
+        $tab_commande = ModelCommande::selectAllCommandeByUtilisateur();
         $controller = 'commande';
-        $view = "readAll";
+        $view = "list";
         $pagetitle = 'Toutes les commandes';
+        require File::build_path(array('view', 'view.php'));
+    }
+
+    public static function detailCommande(){
+        $tab_ligneCommande = ModelCommande::selectLigneCommandeByCommande($_GET['numCommande']);
+        $count = 0;
+        foreach ($tab_ligneCommande as $ligneCommande){
+            $tab_ligneCommande[$count]['nomVin'] = ModelVin::select($ligneCommande['idVin'])->get('nomVin');
+            unset($tab_ligneCommande[$count++]['idVin']);
+        }
+        $controller = 'commande';
+        $view = "detail";
+        $pagetitle = 'Commande N°' . $_GET['numCommande'];
         require File::build_path(array('view', 'view.php'));
     }
 }

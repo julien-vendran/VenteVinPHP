@@ -5,7 +5,7 @@
 </p>
 
 <div class="center-align">
-    <a href="index.php?action=list&controller='commande">
+    <a href="index.php?action=readAllCommande">
         <button class="btn waves-effect waves-light">
             Voir mes commandes
         </button>

@@ -36,6 +36,34 @@ class ModelCommande extends Model{
         return parent::select($primary_value);
     }
 
+    public static function selectAllCommandeByUtilisateur(){
+        $sql = "SELECT numCommande, dateCommande, montantCommande FROM commandes WHERE loginUtilisateur=:sql_loginUtilisateur";
+        $req = Model::$pdo->prepare($sql);
+        $values = array(
+            "sql_loginUtilisateur" => $_SESSION['login']
+        );
+        $req->execute($values);
+        $req->setFetchMode(PDO::FETCH_ASSOC);
+        $tab_commande = $req->fetchAll();
+        if(empty($tab_commande))
+            return false;
+        return $tab_commande;
+    }
+
+    public static function selectLigneCommandeByCommande($numCommande){
+        $sql = "SELECT idVin, quantite FROM lignescommande WHERE numCommande=:sql_numCommande";
+        $req = Model::$pdo->prepare($sql);
+        $values = array(
+            "sql_numCommande" => $numCommande
+        );
+        $req->execute($values);
+        $req->setFetchMode(PDO::FETCH_ASSOC);
+        $tab_ligneCommande = $req->fetchAll();
+        if(empty($tab_ligneCommande))
+            return false;
+        return $tab_ligneCommande;
+    }
+
     public static function insert($data) {
         return parent::insert($data);
     }
@@ -103,4 +131,5 @@ class ModelCommande extends Model{
             ModelPanier::supprimerArticle($panier['idVin'][$i]); //Vide le panier
         }
     }
+
 }
