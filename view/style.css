@@ -21,7 +21,7 @@
 }
 
 #menu>ul>li *{
-	font-size: 32px;
+	font-size: 22px;
 }
 
 footer{
@@ -33,7 +33,7 @@ footer{
 
 footer div{
 	margin:auto;
-	font-size: 2em;
+	font-size: 22px;
 }
 
 body{
