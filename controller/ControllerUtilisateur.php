@@ -146,6 +146,7 @@ class ControllerUtilisateur {
     }
 
     public static function adminPanelAdministrateur () {
+        $tab = ModelCommande::selectAll();
         $controller = 'utilisateur';
         $view = 'adminPanel';
         $pagetitle = 'Administrateur';
