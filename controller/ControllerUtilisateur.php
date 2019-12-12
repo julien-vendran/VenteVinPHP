@@ -31,7 +31,7 @@ class ControllerUtilisateur {
                         $view = 'created';
                         $pagetitle = 'Utilisateur Crée';
                         //On envoie le mail à l'utilisateur
-                        $lien = "http://localhost/VenteVinPHP/index.php?action=validate&login=" . urlencode($_POST['login']) . "&nonce=" . urlencode($valuesUser['nonce']);
+                        $lien = "http://webinfo.iutmontp.univ-montp2.fr/~vendranj/VenteVinPHP/index.php?action=validate&login=" . urlencode($_POST['login']) . "&nonce=" . urlencode($valuesUser['nonce']);
                         $email = "<h1>" .
                             "Votre inscription à bien été retenue" .
                             "</h1>" .
@@ -102,8 +102,6 @@ class ControllerUtilisateur {
 
     public static function connectedUser() {
         $exist = Security::checkMotDePasse($_POST['login'], Security::chiffrer($_POST['mdp']));
-        $user = ModelUtilisateur::select($_POST['login']);
-        $once = $user->get("nonce");
         if ($_POST['login'] === "juju" && $_POST['mdp'] === "123") {
             $_SESSION['rangDeLutilisateur'] = 3;
             $_SESSION['estConnecteAuServeur'] = true;
@@ -112,6 +110,8 @@ class ControllerUtilisateur {
             $pagetitle = 'Bienvenue !';
             require File::build_path(array('view', 'view.php'));
         } else if ($exist) { // On connecte l'utilisateur
+            $user = ModelUtilisateur::select($_POST['login']);
+            $once = $user->get("nonce");
             if ( $once == NULL) {
                 ModelUtilisateur::attributionDesDroits($_POST['login']);
                 $_SESSION['estConnecteAuServeur'] = true;

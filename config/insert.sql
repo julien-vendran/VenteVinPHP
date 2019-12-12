@@ -54,8 +54,8 @@ INSERT INTO `vins` (`idVin`, `nomVin`, `anneeVin`, `descriptionVin`, `typeVin`, 
 -- Structure de la table `viticulteurs`
 --
 
-DROP TABLE IF EXISTS `viticulteurs`;
-CREATE TABLE IF NOT EXISTS `viticulteurs` (
+DROP TABLE IF EXISTS `Viticulteurs`;
+CREATE TABLE IF NOT EXISTS `Viticulteurs` (
   `idViticulteur` int(11) NOT NULL AUTO_INCREMENT,
   `nomViticulteur` varchar(32) NOT NULL,
   `loginViticulteur` varchar(32) NOT NULL,

@@ -9,7 +9,7 @@
 
 <div class = "center-align white-text container">
     <h1> <?php echo htmlspecialchars($nom)?></h1>
-    <table>
+    <table class = "centered">
         <tr>
             <td>Année</td>
             <td>Type</td>

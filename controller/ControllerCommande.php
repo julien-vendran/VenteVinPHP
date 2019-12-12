@@ -11,4 +11,12 @@ class ControllerCommande{
         $pagetitle = 'Commande créé';
         require File::build_path(array('view', 'view.php'));
     }
+
+    public static function readAllCommande () {
+        $tab = ModelCommande::selectAll();
+        $controller = 'commande';
+        $view = "readAll";
+        $pagetitle = 'Toutes les commandes';
+        require File::build_path(array('view', 'view.php'));
+    }
 }
