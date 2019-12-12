@@ -25,6 +25,21 @@
             </tr>
         </tbody>
     </table>
-    <h5>Descriprion actuelle : </h5>
-    <?php echo htmlspecialchars($descr)?>
+    <h5>Descriprion : </h5>
+    <?php echo htmlspecialchars($descr);
+    echo '<p>';
+    if (isset($_SERVER['HTTP_REFERER']))
+    echo "<a href=".$_SERVER['HTTP_REFERER'].">" .
+            "<button class='btn waves-effect waves-light'>" .
+                "Retour" .
+            "</button>" .
+        "</a>";
+    else
+    echo '<a href="index.php">' .
+            '<button class=\'btn waves-effect waves-light\'>' .
+                'Retour vers l\'accueil' .
+            '</button>' .
+        '</a>';
+    echo '</p>';
+    ?>
 </div>
