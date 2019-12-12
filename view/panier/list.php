@@ -86,7 +86,21 @@
         ?>
     </table>
 </form>
-<a href="index.php?action=paye"> Payer </a>
+
+<?php
+if(ModelPanier::MontantGlobal()!=0){
+    ?>
+    <div class="center-align" id="paye">
+        <a href="index.php?action=paye">
+            <button class="btn waves-effect waves-light">
+                Payer
+            </button>
+        </a>
+    </div>
+<?php
+}
+?>
+
 </body>
 <script type="text/javascript">
     function miseAJour (id, qte) {
