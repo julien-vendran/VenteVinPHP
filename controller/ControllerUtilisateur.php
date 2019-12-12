@@ -41,7 +41,7 @@ class ControllerUtilisateur {
                             "<a href = ". $lien .">" .
                             "Valider votre inscription" .
                             "</a>";
-                        mail("julienletest@yopmail.com", "Validation inscription à Caveau-Online", $email);
+                        mail($valuesUser['emailUtilisateur'], "Validation inscription à Caveau-Online", $email);
                     }
                 } else {
                     $erreurRencontree = "mail";
