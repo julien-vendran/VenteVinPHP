@@ -12,9 +12,11 @@
             ?>
             <div class="col s4 m2">
                 <div class="card sizecard">
-                    <div class="card-image sizeimg">
-                        <img src="<?php echo $imgVin ?>">
-                    </div>
+                    <a href="?action=readVin&idVin=<?php echo $idVin?>">
+                        <div class="card-image sizeimg">
+                            <img src="<?php echo $imgVin ?>">
+                        </div>
+                    </a>
                     <div class="card-content ">
                         <span class="black-text card-title"><?php echo $nomVin ?></span>
                         <p class="black-text"> <?php echo $prixVin ?>€ / bouteille</p>

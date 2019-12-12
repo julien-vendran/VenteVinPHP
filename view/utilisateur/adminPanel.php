@@ -14,4 +14,6 @@
             </button>
         </a>
     </p>
+    <!--On veut permettre à l'administrateur de voir toutes les commandes passées-->
+    <h2>Commandes passées sur le site pour le moment : </h2>
 </div>
