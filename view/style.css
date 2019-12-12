@@ -76,6 +76,7 @@ html{
 .connexion{
 	height: auto;
 	display: block;
+	margin-bottom: 25px;
 }
 
 .btn, .btn-large, .btn-small{
