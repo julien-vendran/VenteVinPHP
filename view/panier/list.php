@@ -86,6 +86,7 @@
         ?>
     </table>
 </form>
+<a href="index.php?action=paye"> Payer </a>
 </body>
 <script type="text/javascript">
     function miseAJour (id, qte) {

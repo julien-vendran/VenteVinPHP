@@ -3,6 +3,7 @@ require_once File::build_path(array('controller','ControllerVin.php'));
 require_once File::build_path(array('controller','ControllerViticulteur.php'));
 require_once File::build_path(array('controller', 'ControllerUtilisateur.php'));
 require_once File::build_path(array('controller', 'ControllerPanier.php'));
+require_once File::build_path(array('controller', 'ControllerCommande.php'));
 require_once File::build_path(array('lib', 'Session.php'));
 
     if (Session::est_connecte()) {
@@ -41,6 +42,7 @@ require_once File::build_path(array('lib', 'Session.php'));
     $methods_Viticulteur = get_class_methods('ControllerViticulteur');
     $methods_Utilisateur = get_class_methods('ControllerUtilisateur');
     $methods_panier = get_class_methods('ControllerPanier');
+    $methods_commande = get_class_methods('ControllerCommande');
 
     if (in_array($action, $methods_Vin))
         ControllerVin::$action();
@@ -50,6 +52,8 @@ require_once File::build_path(array('lib', 'Session.php'));
         ControllerUtilisateur::$action();
     else if (in_array($action, $methods_panier))
         ControllerPanier::$action();
+    else if (in_array($action, $methods_commande))
+        ControllerCommande::$action();
     else if ($action =! "accueil") {
         $controller = 'vin';
         $view = 'error';

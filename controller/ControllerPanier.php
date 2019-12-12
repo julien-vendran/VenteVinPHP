@@ -49,7 +49,10 @@ class ControllerPanier {
         }
     }
 
-    public static function payer(){
-
+    public static function paye(){
+        $controller = 'panier';
+        $view = 'paiement';
+        $pagetitle = 'Paiement';
+        require_once File::build_path(array('view', 'view.php'));
     }
 }

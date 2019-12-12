@@ -2,28 +2,10 @@
 require_once File::build_path(array('model', 'ModelCommande.php'));
 
 class ControllerCommande{
-    public static function createCommande(){
-        $values = array(
-            'loginUtilisateur' => $_SESSION['login'],
-            'montantCommande' => ModelPanier::MontantGlobal(),
-        );
 
-        ModelCommande::insert($values);
-        $numCommande = ModelCommande::selectMax();
+    public static function create(){
 
-        $nbVin = count($_SESSION['panierVin']['idVin']);
-
-        for($i=0; i<$nbVin; $i++){
-            $values = array(
-                'idCommande' => $numCommande,
-                'idVin' => $_SESSION['panierVin']['idVin'][i],
-                'quantite' => $_SESSION['nombreBouteille']['idVin'][i]
-            );
-
-            ModelLigneCommande::insert($values);
-        }
-
-
+        ModelCommande::enregistrerCommande($_SESSION['login'], $_SESSION['panierVin']);
         $controller = 'commande';
         $view = 'created';
         $pagetitle = 'Commande créé';

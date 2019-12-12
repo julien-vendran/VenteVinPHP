@@ -115,6 +115,7 @@ class ControllerUtilisateur {
             if ( $once == NULL) {
                 ModelUtilisateur::attributionDesDroits($_POST['login']);
                 $_SESSION['estConnecteAuServeur'] = true;
+                $_SESSION['login'] = $_POST['login'];
                 $controller = 'utilisateur';
                 $view = 'connected';
                 $pagetitle = 'Bienvenue !';
