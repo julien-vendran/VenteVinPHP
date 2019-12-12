@@ -8,7 +8,7 @@
         $login = "";
 ?>
 
-<div class="container">
+<div class="container connexion">
     <h1>Bienvenue sur caveau-online</h1>
     <h4>Merci de vous connecter</h4>
     <?php     if (isset($erreurRencontree) && $erreurRencontree =="nonce") {?>

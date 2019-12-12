@@ -73,8 +73,18 @@ html{
 	font-size: 2.8em;
 }
 
+.connexion{
+	height: auto;
+	display: block;
+}
+
 .btn, .btn-large, .btn-small{
 	background-color: rgb(124,34,45) !important;
+}
+
+.addedVin{
+	font-size: 1.8em;
+	text-align: center;
 }
 
 /*List de vin*/
