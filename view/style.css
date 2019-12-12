@@ -26,6 +26,7 @@
 
 footer{
 	background-color: rgb(124,34,45);
+	margin-top: 25px;
 	height: 8vh;
 	display:flex;
 	color: white;
@@ -76,7 +77,6 @@ html{
 .connexion{
 	height: auto;
 	display: block;
-	margin-bottom: 25px;
 }
 
 .btn, .btn-large, .btn-small{
