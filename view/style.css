@@ -94,6 +94,18 @@ html{
 	min-height: 400px;
 	overflow: hidden;
 }
+
+.card-image{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.card-image>img{
+	height: 350px;
+	width: auto !important;
+}
+
 .sizetxt{
 	max-height: 100px;
 	min-height: 100px;

@@ -16,7 +16,7 @@
         </p>
         <input type='hidden' name='action' value='createdViticulteur'>
         <p>
-            <input type="submit" value="Envoyer" />
+            <button class="waves-effect waves-light btn" type="submit">Envoyer</button>
         </p>
     </fieldset>
 </form>

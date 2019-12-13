@@ -24,7 +24,9 @@ class ControllerCommande{
         $tab_ligneCommande = ModelCommande::selectLigneCommandeByCommande($_GET['numCommande']);
         $count = 0;
         foreach ($tab_ligneCommande as $ligneCommande){
-            $tab_ligneCommande[$count]['nomVin'] = ModelVin::select($ligneCommande['idVin'])->get('nomVin');
+            $vin = ModelVin::select($ligneCommande['idVin']);
+            $tab_ligneCommande[$count]['prixU'] = $vin->get('prixVin');
+            $tab_ligneCommande[$count]['nomVin'] = $vin->get('nomVin');
             unset($tab_ligneCommande[$count++]['idVin']);
         }
         $controller = 'commande';

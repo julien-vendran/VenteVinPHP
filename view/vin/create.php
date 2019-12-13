@@ -63,7 +63,7 @@ else
         </p>
         <input type='hidden' name='action' value='createdVin'>
         <p>
-            <input type="submit" value="Envoyer" />
+            <button class="waves-effect waves-light btn" type="submit">Envoyer</button>
         </p>
     </fieldset> 
 </form>

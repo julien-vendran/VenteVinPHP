@@ -26,16 +26,10 @@
         </tbody>
     </table>
     <h5>Description</h5>
-    <?php echo htmlspecialchars($descr);
-    echo '<p>';
-    if (isset($_SERVER['HTTP_REFERER']))
-    echo "<a  class=\"waves-effect waves-light btn\" href=\"".$_SERVER['HTTP_REFERER']."\">" .
-            "Retour" .
-        "</a>";
-    else
-    echo '<a  class="waves-effect waves-light btn" href="index.php">' .
-            'Retour vers l\'accueil' .
-        '</a>';
-    echo '</p>';
-    ?>
+    <?php echo htmlspecialchars($descr);?>
+    <p>
+        <a class="waves-effect waves-light btn" href="?action=readAllVins">
+            Retour
+        </a>
+    </p>
 </div>

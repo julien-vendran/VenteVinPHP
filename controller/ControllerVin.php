@@ -37,9 +37,9 @@ class ControllerVin {
         $user = ModelViticulteur::select($_SESSION['login']);
         $id = $user->get('idViticulteur');
         $valuesVin = array(
-            "nomVin" => $_POST['nomVin'],
+            "nomVin" => addslashes($_POST['nomVin']),
             "anneeVin" => $_POST['anneeVin'],
-            "descriptionVin" => $_POST['descriptionVin'],
+            "descriptionVin" => addslashes($_POST['descriptionVin']),
             "typeVin" => $_POST['typeVin'],
             "medailleVin" => $_POST['medailleVin'],
             "prixVin" => $_POST['prixVin'],

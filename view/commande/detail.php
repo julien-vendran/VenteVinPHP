@@ -18,6 +18,7 @@ foreach ($tab_ligneCommande as $ligneCommande){
         <thead>
         <tr>
             <th>Nom Vin</th>
+            <th>Prix Unitaire</th>
             <th>Quantité</th>
         </tr>
         </thead>

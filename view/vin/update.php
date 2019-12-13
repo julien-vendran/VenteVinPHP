@@ -29,7 +29,7 @@
         <input type='hidden' name='action' value='updatedVin'>
         <input type='hidden' name='idVin' value='<?php echo $_GET['idVin']?>'>
         <p>
-            <input type="submit" value="Envoyer" />
+            <button class="waves-effect waves-light btn" type="submit">Envoyer</button>
         </p>
     </fieldset>
 </form>
