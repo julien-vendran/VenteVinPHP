@@ -1,4 +1,4 @@
-<form method="post" action="">
+<form method="post">
     <fieldset>
         <legend> Modification du <?php echo htmlspecialchars($v->get("nomVin"))?> </legend>
         <p>

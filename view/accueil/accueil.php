@@ -1,5 +1,5 @@
 <div class="parallax-container">
-    <div class="parallax"><img src="./view/images/cave.png"></div>
+    <div class="parallax"><img src="./view/images/cave.png" alt="caveVin"></div>
 </div>
 <div class="container container_parralax">
     <h1>Bienvenue sur caveau-online.fr</h1>
@@ -9,7 +9,7 @@
     </p>
 </div>
 <div class="parallax-container">
-    <div class="parallax"><img src="./view/images/cave2.jpg"></div>
+    <div class="parallax"><img src="./view/images/cave2.jpg" alt="caveVin"></div>
 </div>
 
 <div class="container container_parralax">
@@ -17,7 +17,7 @@
     <p>Venez découvrir notre <a href="?action=readAllVins">boutique</a>, vous y trouverez un large choix pour tous les prix et toutes les occasions !</p>
 </div>
 <div class="parallax-container">
-    <div class="parallax"><img src="./view/images/cave3.jpg"></div>
+    <div class="parallax"><img src="./view/images/cave3.jpg" alt="caveVin"></div>
 </div>
 
 

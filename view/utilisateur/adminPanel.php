@@ -6,8 +6,6 @@
                 Créer un viticulteur
             </button>
         </a>
-    </p>
-    <p>
         <a href = "?action=createVin">
             <button class="btn-large waves-effect waves-light red">
                 Ajouter un nouveau vin
@@ -15,13 +13,15 @@
         </a>
     </p>
     <!--On veut permettre à l'administrateur de voir toutes les commandes passées-->
-    <h2>Commandes passées sur le site pour le moment : </h2>
+    <h2>Commandes passées sur le site</h2>
     <table>
         <thead>
-            <td>Numéro de commande</td>
-            <td>Date de la commande</td>
-            <td>Login Acheteur</td>
-            <td>Montant de la commande</td>
+            <tr>
+                <th>Numéro de commande</th>
+                <th>Date de la commande</th>
+                <th>Login Acheteur</th>
+                <th>Montant de la commande</th>
+            </tr>
         </thead>
         <tbody>
 

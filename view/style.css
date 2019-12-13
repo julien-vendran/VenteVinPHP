@@ -51,6 +51,11 @@ main{
 	color: #a02c39;
 }
 
+button>a{
+	font-weight: normal !important;
+	color: whitesmoke !important;
+}
+
 .parallax-container .parallax img{
 	opacity:1 !important;
 }
@@ -75,9 +80,10 @@ html{
 
 .btn, .btn-large, .btn-small{
 	background-color: rgb(124,34,45) !important;
+	color: whitesmoke !important;
 }
 
-.addedVin{
+.p_centre{
 	font-size: 1.8em;
 	text-align: center;
 }

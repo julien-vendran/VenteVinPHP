@@ -1,7 +1,5 @@
 <?php
-//Créer la table utilisateur
-/*CREATE TABLE `Utilisateur_vin` ( `idUtilisateur` INT NOT NULL AUTO_INCREMENT , `loginUtilisateur` VARCHAR(32) NOT NULL , `mdpUtilisateur` VARCHAR(64) NOT NULL , `nomUtilisateur` INT NOT NULL , PRIMARY KEY (`idUtilisateur`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
-*/
+
 require_once File::build_path(array('model', 'ModelUtilisateur.php'));
 class ControllerUtilisateur {
     //rangDeLutilisateur -> Pour les droits
@@ -56,7 +54,6 @@ class ControllerUtilisateur {
                 $pagetitle = 'Inscription';
             }
         } else {
-            echo 'par la';
             $erreurRencontree = "mdp";
             $controller = 'utilisateur';
             $view = 'inscription';

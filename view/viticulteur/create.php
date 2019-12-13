@@ -1,4 +1,4 @@
-<form method="post" action="">
+<form method="post">
     <fieldset>
         <legend> Création </legend>
         <p>

@@ -7,8 +7,6 @@
     }
 ?>
 
-<body>
-
 <form method="post" id="panier" action="list.php">
     <table>
         <tr>
@@ -41,7 +39,7 @@
                             <p>Le vin <?php echo $nomVin?></p>
                         </td>
                         <td>
-                            <input onchange="var id = '<?php echo $_SESSION['panierVin']['idVin'][$i]?>'; miseAJour(id, this.value)" class = "white-text" type = 'number' size="4" pattern="[0-9]*"  value = "<?php echo htmlspecialchars($_SESSION['panierVin']['nombreBouteille'][$i])?>" max = "<?php echo $qteV?>">
+                            <input onchange="var id = '<?php echo $_SESSION['panierVin']['idVin'][$i]?>'; miseAJour(id, this.value)" class = "white-text" type = 'number' value = "<?php echo htmlspecialchars($_SESSION['panierVin']['nombreBouteille'][$i])?>" max = "<?php echo $qteV?>">
                         </td>
                         <td>
                             <?php
@@ -60,26 +58,14 @@
         <?php
                 } ?>
                 <tr>
-                    <td></td>
-                    <td>
+                    <td colspan="2">
                         Total :
                     </td>
-                    <td>
+                    <td colspan="2">
                         <?php echo ModelPanier::MontantGlobal()?> €
                     </td>
                 </tr>
 
-<!--
-                echo "<tr><td colspan=\"2\"> </td>";
-                echo "<td colspan=\"2\">";
-                echo "Total : ". ModelPanier::MontantGlobal();
-                echo "</td></tr>";
-
-                echo "<tr><td colspan=\"4\">";
-                echo "<input type=\"submit\" value=\"Rafraichir\"/>";
-                echo "<input type=\"hidden\" name=\"action\" value=\"refresh\"/>";
-
-                echo "</td></tr>";-->
         <?php
             }
         }
@@ -101,7 +87,6 @@ if(ModelPanier::MontantGlobal()!=0){
 }
 ?>
 
-</body>
 <script type="text/javascript">
     function miseAJour (id, qte) {
         var url = 'index.php?action=readPanier&idVin='.concat(id);
@@ -110,5 +95,4 @@ if(ModelPanier::MontantGlobal()!=0){
         window.location.replace(url.concat(urlqte));
     }
 </script>
-</html>
 

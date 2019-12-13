@@ -14,8 +14,8 @@ class ControllerViticulteur {
 
     public static function adminPanelViticulteur () {
         $user = ModelViticulteur::select($_SESSION['login']);
-        $id = $user->get('idViticulteur');
-        $tab = ModelUtilisateur::selectAllVinByIdViticulteur($id);
+        $id_viticulteur = $user->get('idViticulteur');
+        $tab = ModelUtilisateur::selectAllVinByIdViticulteur($id_viticulteur);
         $controller = 'viticulteur';
         $view = 'panel';
         $pagetitle = 'Panneau d\'administration';
@@ -23,12 +23,6 @@ class ControllerViticulteur {
     }
 
         public static function createViticulteur () {
-        echo'<script type="text/javascript" >' .
-            'var res = prompt(\'Avez vous les droits ?\');' .
-            'if (res !== "Vendran") {' . // Il faut dire ça pour passer
-            'window.location.replace("index.php");' .
-            '}' .
-            '</script>';
         $controller = 'viticulteur';
         $view = 'create';
         $pagetitle = 'Création d\'un agriculteur';
@@ -38,16 +32,16 @@ class ControllerViticulteur {
     public static function createdViticulteur () {
         require_once File::build_path(array('model', 'ModelUtilisateur.php'));
         $valuesViticulteurs = array(
-            "idViticulteur" => 0,
             "nomViticulteur" => $_POST['nomViticulteur'],
-            "prenomViticulteur" => $_POST['prenomViticulteur'],
+            "loginViticulteur" => $_POST['loginViticulteur']
         );
         $okViti = ModelViticulteur::insert($valuesViticulteurs);
         $valuesUtilisateurs = array(
-            "idUtilisateur" => 0,
             "loginUtilisateur" => $_POST['loginViticulteur'],
             "mdpUtilisateur" => Security::chiffrer($_POST['mdpViticulteur']),
             "nomUtilisateur" => $_POST['nomViticulteur'] . " " . $_POST['prenomViticulteur'],
+            "nonce" => '',
+            "emailUtilisateur" => ''
         );
         $okUti = ModelUtilisateur::insert($valuesUtilisateurs);
 

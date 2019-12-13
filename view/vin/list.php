@@ -14,7 +14,7 @@
                 <div class="card sizecard">
                     <a href="?action=readVin&idVin=<?php echo $idVin?>">
                         <div class="card-image sizeimg">
-                            <img src="<?php echo $imgVin ?>">
+                            <img src="<?php echo $imgVin ?>" alt="bouteilleVin">
                         </div>
                     </a>
                     <div class="card-content ">
@@ -23,7 +23,7 @@
                         <form action="index.php?action=ajouterVinPanier" method="post">
                             <label>Quantité</label>
                             <input type="number" step="1" min="0" max="<?php echo $nbBouteille ?>" name="qteVin"
-                                   value="1" title="Qté" size="4" pattern="[0-9]*" inputmode="numeric">
+                                   value="1" title="Qté">
                             <button class="btn-floating btn-large halfway-fab waves-effect waves-light red"
                                     type="submit">
                                 <i class="material-icons">
@@ -43,7 +43,7 @@
             <div class="col s4 m2 opacite08">
                 <div class="card sizecard">
                     <div class="card-image sizeimg">
-                        <img src="<?php echo $imgVin ?>">
+                        <img src="<?php echo $imgVin ?>" alt="bouteilleVin">
                     </div>
                     <div class="card-content ">
                         <span class="black-text card-title"><?php echo $nomVin ?></span>

@@ -62,7 +62,7 @@ class ControllerVin {
 
     public static function deletedVin() {
         $idVin = $_GET['idVin'];
-        if (!is_null($idVin)) {
+        if (is_null($idVin)) {
             $view = 'error';
             $controller = 'vin';
             $pagetitle = 'ERREUR';
@@ -94,8 +94,7 @@ class ControllerVin {
             "medailleVin" => $_POST['medailleVin'],
             "prixVin" => $_POST['prixVin'],
             "qteVin" => $_POST['qteVin'],
-            "imageVin" => $_POST['image'],
-            "idViti"
+            "imageVin" => $_POST['image']
         );
         $ok = ModelVin::update($values, $idVin);
         $tab_v = ModelVin::selectAll();

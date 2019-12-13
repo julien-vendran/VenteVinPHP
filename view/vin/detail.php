@@ -25,11 +25,11 @@
             </tr>
         </tbody>
     </table>
-    <h5>Descriprion : </h5>
+    <h5>Description</h5>
     <?php echo htmlspecialchars($descr);
     echo '<p>';
     if (isset($_SERVER['HTTP_REFERER']))
-    echo "<a href=".$_SERVER['HTTP_REFERER'].">" .
+    echo "<a href=\"".$_SERVER['HTTP_REFERER']."\">" .
             "<button class='btn waves-effect waves-light'>" .
                 "Retour" .
             "</button>" .
