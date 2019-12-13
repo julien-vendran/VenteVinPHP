@@ -38,12 +38,12 @@ class ControllerVin {
         $id = $user->get('idViticulteur');
         $valuesVin = array(
             "nomVin" => addslashes($_POST['nomVin']),
-            "anneeVin" => $_POST['anneeVin'],
+            "anneeVin" => addslashes($_POST['anneeVin']),
             "descriptionVin" => addslashes($_POST['descriptionVin']),
-            "typeVin" => $_POST['typeVin'],
-            "medailleVin" => $_POST['medailleVin'],
-            "prixVin" => $_POST['prixVin'],
-            "qteVin" => $_POST['qteVin'],
+            "typeVin" => addslashes($_POST['typeVin']),
+            "medailleVin" => addslashes($_POST['medailleVin']),
+            "prixVin" => addslashes($_POST['prixVin']),
+            "qteVin" => addslashes($_POST['qteVin']),
             "imageVin" => "./view/images/" . $_POST['image'],
             "idViticulteur" => $id,
         );
@@ -87,13 +87,13 @@ class ControllerVin {
     public static function updatedVin(){
         $idVin = $_POST['idVin'];
         $values = array(
-            "nomVin" => $_POST['nomVin'],
-            "anneeVin" => $_POST['anneeVin'],
-            "descriptionVin" => $_POST['descriptionVin'],
-            "typeVin" => $_POST['typeVin'],
-            "medailleVin" => $_POST['medailleVin'],
-            "prixVin" => $_POST['prixVin'],
-            "qteVin" => $_POST['qteVin'],
+            "nomVin" => addslashes($_POST['nomVin']),
+            "anneeVin" => addslashes($_POST['anneeVin']),
+            "descriptionVin" => addslashes($_POST['descriptionVin']),
+            "typeVin" => addslashes($_POST['typeVin']),
+            "medailleVin" => addslashes($_POST['medailleVin']),
+            "prixVin" => addslashes($_POST['prixVin']),
+            "qteVin" => addslashes($_POST['qteVin']),
             "imageVin" => $_POST['image']
         );
         $ok = ModelVin::update($values, $idVin);
