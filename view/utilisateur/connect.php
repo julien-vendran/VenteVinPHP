@@ -49,10 +49,8 @@
     </form>
     <p>
         Pas encore inscrit ?
-        <a href="?action=inscrireUser">
-            <button class="btn waves-effect waves-light">
-                Inscription
-            </button>
+        <a class="waves-effect waves-light btn" href="?action=inscrireUser">
+            Inscription
         </a>
     </p>
 </div>

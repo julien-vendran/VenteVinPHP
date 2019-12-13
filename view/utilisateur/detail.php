@@ -5,10 +5,8 @@
 </p>
 
 <div class="center-align">
-    <a href="index.php?action=readAllCommande">
-        <button class="btn waves-effect waves-light">
-            Voir mes commandes
-        </button>
+    <a class="waves-effect waves-light btn" href="index.php?action=readAllCommande">
+        Voir mes commandes
     </a>
 </div>
 

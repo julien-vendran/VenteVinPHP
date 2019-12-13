@@ -1,15 +1,11 @@
 <div class = "container center-align" style="text-align: center">
     <h1>Panneau d'administrateur </h1>
     <p>
-        <a href = "?action=createViticulteur">
-            <button class="btn-large waves-effect waves-light red">
-                Créer un viticulteur
-            </button>
+        <a class="waves-effect waves-light btn" href = "?action=createViticulteur">
+            Créer un viticulteur
         </a>
-        <a href = "?action=createVin">
-            <button class="btn-large waves-effect waves-light red">
-                Ajouter un nouveau vin
-            </button>
+        <a class="waves-effect waves-light btn" href = "?action=createVin">
+            Ajouter un nouveau vin
         </a>
     </p>
     <!--On veut permettre à l'administrateur de voir toutes les commandes passées-->
